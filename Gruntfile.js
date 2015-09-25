@@ -18,7 +18,18 @@ module.exports = function(grunt) {
         },
         ngtemplates: {
             hdpuzzles: {
-                //htmlmin
+                options: {
+                    htmlmin: {
+                        collapseBooleanAttributes: true,
+                        collapseWhitespace: true,
+                        removeAttributeQuotes: true,
+                        removeComments: true,
+                        removeEmptyAttributes: true,
+                        removeRedundantAttributes: true,
+                        removeScriptTypeAttributes: true,
+                        removeStyleLinkTypeAttributes: true
+                    }
+                },
                 cwd: 'components',
                 src: '**/*.html',
                 dest: 'temp/templates.js'
