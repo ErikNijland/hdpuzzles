@@ -1,0 +1,15 @@
+{
+  "name": "hdpuzzles",
+  "version": "0.0.1",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ErikNijland/hdpuzzles.git"
+  },
+  "bugs": {
+    "url": "https://github.com/ErikNijland/hdpuzzles/issues"
+  },
+  "devDependencies": {
+    "bower": "^1.5.3",
+    "grunt-cli": "^0.1.13"
+  }
+}
