@@ -3,6 +3,7 @@
   "version": "0.0.1",
   "homepage": "https://github.com/ErikNijland/hdpuzzles",
   "dependencies": {
-    "angular": "angularjs#~1.4.6"
+    "angular": "angularjs#~1.4.6",
+    "angular-resource": "~1.4.6"
   }
 }
