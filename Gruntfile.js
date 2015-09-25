@@ -16,6 +16,14 @@ module.exports = function(grunt) {
                 }
             }
         },
+        ngtemplates: {
+            hdpuzzles: {
+                //htmlmin
+                cwd: 'components',
+                src: '**/*.html',
+                dest: 'temp/templates.js'
+            }
+        },
         concat: {
             options: {
                 sourceMap: true
@@ -25,6 +33,7 @@ module.exports = function(grunt) {
                     'bower_components/angular/angular.js',
                     'bower_components/angular-resource/angular-resource.js',
                     'app.js',
+                    'temp/templates.js',
                     'components/**/*.js'
                 ],
                 dest: 'public/app.js'
@@ -36,7 +45,7 @@ module.exports = function(grunt) {
                 tasks: ['sass']
             },
             js: {
-                files: ['app.js', 'components/**/*.js'],
+                files: ['app.js', 'components/**/*.js', 'components/**/*.html'],
                 tasks: ['jshint', 'concat']
             }
         }
@@ -44,9 +53,10 @@ module.exports = function(grunt) {
 
     grunt.loadNpmTasks('grunt-contrib-jshint');
     grunt.loadNpmTasks('grunt-sass');
+    grunt.loadNpmTasks('grunt-angular-templates');
     grunt.loadNpmTasks('grunt-contrib-concat');
     grunt.loadNpmTasks('grunt-contrib-watch');
 
-    grunt.registerTask('build', ['sass', 'jshint', 'concat']);
     grunt.registerTask('default', ['build', 'watch']);
+    grunt.registerTask('build', ['sass', 'jshint', 'concat']);
 };

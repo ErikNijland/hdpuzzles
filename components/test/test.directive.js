@@ -7,10 +7,8 @@
 
     function hdpTestDirective () {
         return {
-            link: function () {
-                console.log('jaja');
-            },
-            template: '<p>This a template for the hdp-test directive!</p>'
+            //template: '<p>This a template for the hdp-test directive!</p>'
+            templateUrl: 'test/test.html'
         };
     }
 })();

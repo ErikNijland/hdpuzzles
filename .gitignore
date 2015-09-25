@@ -1,6 +1,7 @@
 .idea
 node_modules
-components/vendor
+temp
+bower_components
 public/*.css
 public/*.js
 public/*.map
