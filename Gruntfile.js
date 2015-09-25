@@ -42,12 +42,17 @@ module.exports = function(grunt) {
         watch: {
             sass: {
                 files: ['sass/**/*.scss'],
-                tasks: ['sass']
+                tasks: ['build-css']
             },
             js: {
                 files: ['app.js', 'components/**/*.js', 'components/**/*.html'],
-                tasks: ['jshint', 'concat']
+                tasks: ['build-javascript']
             }
+        },
+        clean: {
+            temp: ['temp'],
+            css: ['public/*.css', 'public/*.css.map'],
+            js: ['public/*.js', 'public/*.js.map']
         }
     });
 
@@ -56,7 +61,11 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-angular-templates');
     grunt.loadNpmTasks('grunt-contrib-concat');
     grunt.loadNpmTasks('grunt-contrib-watch');
+    grunt.loadNpmTasks('grunt-contrib-clean');
 
     grunt.registerTask('default', ['build', 'watch']);
-    grunt.registerTask('build', ['sass', 'jshint', 'concat']);
+
+    grunt.registerTask('build', ['build-css', 'build-javascript']);
+    grunt.registerTask('build-css', ['clean:css', 'sass']);
+    grunt.registerTask('build-javascript', ['jshint', 'clean:js', 'ngtemplates', 'concat', 'clean:temp'])
 };
