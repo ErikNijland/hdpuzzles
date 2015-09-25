@@ -1,7 +1,7 @@
 module.exports = function(grunt) {
     grunt.initConfig({
         jshint: {
-            files: ['app.js', 'components/**/*.js'],
+            files: ['app/**/*.js'],
             options: {
                 jshintrc: true
             }
@@ -31,22 +31,21 @@ module.exports = function(grunt) {
                         removeStyleLinkTypeAttributes: true
                     }
                 },
-                cwd: 'components',
+                cwd: 'app/components',
                 src: '**/*.html',
                 dest: 'temp/templates.js'
             }
         },
         concat: {
             options: {
-                sourceMap: true
+                sourceMap: false
             },
             dist: {
                 src: [
                     'bower_components/angular/angular.js',
-                    'bower_components/angular-resource/angular-resource.js',
-                    'app.js',
-                    'temp/templates.js',
-                    'components/**/*.js'
+                    'bower_components/angular-route/angular-route.js',
+                    'app/**/*.js',
+                    'temp/templates.js'
                 ],
                 dest: 'temp/app.js'
             }
@@ -67,7 +66,7 @@ module.exports = function(grunt) {
                 tasks: ['build-css']
             },
             js: {
-                files: ['app.js', 'components/**/*.js', 'components/**/*.html'],
+                files: ['app/**/*.js', 'app/**/*.html'],
                 tasks: ['build-javascript']
             }
         },
