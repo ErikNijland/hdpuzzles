@@ -5,10 +5,21 @@ module.exports = function(grunt) {
             options: {
                 jshintrc: true
             }
+        },
+        sass: {
+            options: {
+                sourceMap: true
+            },
+            dist: {
+                files: {
+                    'public/app.css': 'sass/app.scss'
+                }
+            }
         }
     });
 
     grunt.loadNpmTasks('grunt-contrib-jshint');
+    grunt.loadNpmTasks('grunt-sass');
     grunt.loadNpmTasks('grunt-contrib-watch');
 
     grunt.registerTask('default', ['jshint']);
@@ -19,7 +30,6 @@ module.exports = function(grunt) {
     build
     watch
 
-    jshint
     sass to css
     js concat + minify
     */
