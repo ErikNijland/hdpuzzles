@@ -7,7 +7,10 @@
 
     function hdpTestDirective () {
         return {
-            template: '<p>This a template for the hdp-test directive.</p>'
+            link: function () {
+                console.log('jaja');
+            },
+            template: '<p>This a template for the hdp-test directive!</p>'
         };
     }
 })();

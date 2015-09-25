@@ -29,25 +29,24 @@ module.exports = function(grunt) {
                 ],
                 dest: 'public/app.js'
             }
+        },
+        watch: {
+            sass: {
+                files: ['sass/**/*.scss'],
+                tasks: ['sass']
+            },
+            js: {
+                files: ['app.js', 'components/**/*.js'],
+                tasks: ['jshint', 'concat']
+            }
         }
     });
 
     grunt.loadNpmTasks('grunt-contrib-jshint');
     grunt.loadNpmTasks('grunt-sass');
     grunt.loadNpmTasks('grunt-contrib-concat');
+    grunt.loadNpmTasks('grunt-contrib-watch');
 
-
-    //grunt.loadNpmTasks('grunt-contrib-watch');
-
-    grunt.registerTask('default', ['jshint']);
-
-    /*
-    Task todo:
-    default >> build then watch
-    build
-    watch
-
-    sass to css
-    js concat + minify
-    */
+    grunt.registerTask('build', ['sass', 'jshint', 'concat']);
+    grunt.registerTask('default', ['build', 'watch']);
 };
