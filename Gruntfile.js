@@ -13,7 +13,7 @@ module.exports = function(grunt) {
             },
             dist: {
                 files: {
-                    'public/app.css': 'sass/app.scss'
+                    'public/app.min.css': 'sass/app.scss'
                 }
             }
         },
@@ -48,7 +48,17 @@ module.exports = function(grunt) {
                     'temp/templates.js',
                     'components/**/*.js'
                 ],
-                dest: 'public/app.js'
+                dest: 'temp/app.js'
+            }
+        },
+        uglify: {
+            options: {
+                sourceMap: true
+            },
+            dist: {
+                files: {
+                    'public/app.min.js': ['temp/app.js']
+                }
             }
         },
         watch: {
@@ -74,10 +84,11 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-concat');
     grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks('grunt-contrib-clean');
+    grunt.loadNpmTasks('grunt-contrib-uglify');
 
     grunt.registerTask('default', ['build', 'watch']);
 
     grunt.registerTask('build', ['build-css', 'build-javascript']);
     grunt.registerTask('build-css', ['clean:css', 'sass']);
-    grunt.registerTask('build-javascript', ['jshint', 'clean:js', 'ngtemplates', 'concat', 'clean:temp'])
+    grunt.registerTask('build-javascript', ['jshint', 'clean:js', 'ngtemplates', 'concat', 'uglify', 'clean:temp'])
 };
