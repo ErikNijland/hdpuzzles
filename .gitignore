@@ -1,6 +1,6 @@
 .idea
 node_modules
-public/lib
+components/vendor
 public/*.css
 public/*.js
 public/*.map

@@ -7,6 +7,9 @@
   "freeze": true,
   "funcscope": true,
   "futurehostile": true,
+  "globals": {
+    "angular": false
+  },
   "latedef": "nofunc",
   "strict": true,
   "undef": true,

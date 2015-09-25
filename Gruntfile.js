@@ -1,7 +1,7 @@
 module.exports = function(grunt) {
     grunt.initConfig({
         jshint: {
-            files: ['js/**/*.js'],
+            files: ['app.js', 'components/**/*.js'],
             options: {
                 jshintrc: true
             }
@@ -15,12 +15,29 @@ module.exports = function(grunt) {
                     'public/app.css': 'sass/app.scss'
                 }
             }
+        },
+        concat: {
+            options: {
+                sourceMap: true
+            },
+            dist: {
+                src: [
+                    'bower_components/angular/angular.js',
+                    'bower_components/angular-resource/angular-resource.js',
+                    'app.js',
+                    'components/**/*.js'
+                ],
+                dest: 'public/app.js'
+            }
         }
     });
 
     grunt.loadNpmTasks('grunt-contrib-jshint');
     grunt.loadNpmTasks('grunt-sass');
-    grunt.loadNpmTasks('grunt-contrib-watch');
+    grunt.loadNpmTasks('grunt-contrib-concat');
+
+
+    //grunt.loadNpmTasks('grunt-contrib-watch');
 
     grunt.registerTask('default', ['jshint']);
 
