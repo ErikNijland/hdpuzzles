@@ -13,8 +13,8 @@
                 controller: 'HomeController',
                 templateUrl: 'home/home.html'
             })
-            .when('/puzzles/:id', {
-                templateUrl: 'templates/puzzle.html'
+            .when('/puzzles/1', {
+                templateUrl: 'puzzle/index.html'
             })
             .otherwise({
                 redirectTo: '/'
