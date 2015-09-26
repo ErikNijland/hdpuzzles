@@ -1,8 +1,10 @@
 .thumbnails {
     list-style:none;
+    font-size:0;
 
     li {
-
+        display:inline-block;
+        margin:5px;
 
         a {
             display:block;

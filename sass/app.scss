@@ -1,5 +1,8 @@
-$myColor: #eee;
+@import "_reset";
 
-body {
-  background-color:$myColor;
-}
+@import "_logo";
+@import "_thumbnails";
+
+@import "helpers/_alignment";
+@import "helpers/_padding";
+@import "helpers/_margin";
