@@ -13,6 +13,9 @@
                 controller: 'HomeController',
                 templateUrl: 'home/home.html'
             })
+            .when('/puzzles/:id', {
+                templateUrl: 'templates/puzzle.html'
+            })
             .otherwise({
                 redirectTo: '/'
             });

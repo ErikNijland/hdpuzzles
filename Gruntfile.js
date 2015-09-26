@@ -66,7 +66,7 @@ module.exports = function(grunt) {
                 tasks: ['build-css']
             },
             js: {
-                files: ['app/**/*.js', 'app/**/*.html'],
+                files: ['./app/**/*.js', './app/**/*.html'],
                 tasks: ['build-javascript']
             }
         },

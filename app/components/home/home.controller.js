@@ -5,9 +5,13 @@
         .module('hdpuzzles')
         .controller('HomeController', HomeController);
 
-    HomeController.$inject = ['$scope'];
+    HomeController.$inject = ['$scope', 'api'];
 
-    function HomeController ($scope) {
+    function HomeController ($scope, api) {
+        api.query().then(function (puzzles) {
+            $scope.puzzles = puzzles;
+        });
+
         $scope.who = 'world';
     }
 })();
