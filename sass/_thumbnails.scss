@@ -1,7 +1,15 @@
 .thumbnails {
-  a {
-    img {
-    }
+    list-style:none;
 
-  }
+    li {
+
+
+        a {
+            display:block;
+
+            img {
+                display:block;
+            }
+        }
+    }
 }
