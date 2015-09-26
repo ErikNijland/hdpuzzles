@@ -1,0 +1,12 @@
+.puzzle {
+    .header {
+        overflow:auto;
+        height:100px;
+        padding:10px;
+
+        .preview {
+            display:block;
+            float:right;
+        }
+    }
+}
