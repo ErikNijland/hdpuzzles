@@ -11,6 +11,16 @@
         /*
         Todo: define what goes where
 
+        components/puzzle
+        - statistics.service
+        - canvas.directive
+
+        components/analytics
+        - google-analytics.service
+
+
+
+
         state: not_started / playing / solved
         statistics: # of moves / time passed / previews used
 
