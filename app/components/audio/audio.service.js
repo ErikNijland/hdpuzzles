@@ -5,15 +5,17 @@
         .module('hdpuzzles')
         .service('audio', audioService);
 
-    audioService.$inject = ['soundEffects'];
+    audioService.$inject = ['$window', 'soundEffects'];
 
-    function audioService (soundEffects) {
+    function audioService ($window, soundEffects) {
         return {
             "playSoundEffect": playSoundEffect
         };
 
         function playSoundEffect (name) {
-            console.log(soundEffects[name]);
+            var audio = new $window.Audio();
+            audio.src = soundEffects[name];
+            audio.play();
         }
     }
 })();
