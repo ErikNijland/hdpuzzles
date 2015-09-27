@@ -11,10 +11,6 @@
         /*
         Todo: define what goes where
 
-        components/puzzle
-        - statistics.service
-        - canvas.directive
-
         components/analytics
         - google-analytics.service
 
