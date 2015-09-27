@@ -14,6 +14,7 @@
                 templateUrl: 'home/home.html'
             })
             .when('/puzzles/1', {
+                controller: 'PuzzleController',
                 templateUrl: 'puzzle/index.html'
             })
             .otherwise({
