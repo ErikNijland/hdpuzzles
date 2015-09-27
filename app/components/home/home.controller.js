@@ -11,7 +11,5 @@
         api.query().then(function (puzzles) {
             $scope.puzzles = puzzles;
         });
-
-        $scope.who = 'world';
     }
 })();
