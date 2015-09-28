@@ -18,9 +18,9 @@
                     temp;
 
                 temp = input[currentIndex];
-
+                //console.log(input[currentIndex]);
                 input[currentIndex] = input[randomIndex];
-                input[randomIndex] = input[temp];
+                input[randomIndex] = temp;
             }
 
             return input;

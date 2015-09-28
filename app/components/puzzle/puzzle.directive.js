@@ -30,16 +30,18 @@
 
         function initialize (puzzle) {
             $scope.state = 'NEW';
+
             $scope.image = puzzle.filename;
             $scope.showPreview = true;
 
-            $scope.startGame = startGame;
+            $scope.newGame = newGame;
         }
 
-        function startGame (difficulty) {
-            //game.newGame()
-            //$scope.state
-            //$scope.showPreview = false;
+        function newGame (difficulty) {
+            $scope.state = 'PLAYING';
+            $scope.showPreview = false;
+
+            game.newGame(difficulty);
             //Check for events
         }
     }

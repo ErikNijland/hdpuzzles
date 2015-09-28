@@ -5,18 +5,30 @@
         .module('hdpuzzles')
         .service('game', gameService);
 
-    function gameService () {
+    gameService.$inject = ['difficultySettings', 'shuffle'];
+
+    function gameService (difficultySettings, shuffle) {
         var difficulty,
             pieces = [];
 
         return {
-            "new": newGame,
+            "newGame": newGame,
             "swapPieces": swapPieces
         };
 
         function newGame (difficulty) {
-            //Difficulty
-            //Make an array of pieces
+            var pieces = [],
+                numberOfPieces,
+                i;
+
+            numberOfPieces = difficultySettings[difficulty].NUMBER_OF_COLUMNS * difficultySettings[difficulty].NUMBER_OF_ROWS;
+
+            for (i = 0; i < numberOfPieces; i++) {
+                pieces.push(i);
+            }
+
+            console.log(pieces);
+            console.log(shuffle.shuffle(pieces));
             //Shuffle pieces
             //Start logging statistics
 
