@@ -22,20 +22,25 @@
                 image.onload = render;
 
                 function render () {
-                    var context = element.find('canvas')[0].getContext('2d');
+                    var context;
+
+                    context = element.find('canvas')[0].getContext('2d');
+
+                    scope.canvasWidth = 1425;
+                    scope.canvasHeight = 605;
+                    scope.$digest();
 
                     if (scope.preview) {
                         //Draw the complete image
-                        context.drawImage(image, 0, 0, 800, 600);
+                        context.drawImage(image, 0, 0, image.width, image.height, 0, 0, scope.canvasWidth, scope.canvasHeight);
                     } else {
                         //Draw the puzzle pieces
-
                     }
                 }
 
-                angular.element($window).on('resize', render);
+                //angular.element($window).on('resize', render);
             },
-            template: '<canvas width="800" height="450"></canvas>'
+            template: '<canvas width="{{canvasWidth}}" height="{{canvasHeight}}"></canvas>'
         };
     }
 })();

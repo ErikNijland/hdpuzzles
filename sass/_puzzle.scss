@@ -1,12 +1,13 @@
-.puzzle {
-    .header {
-        overflow:auto;
-        height:100px;
-        padding:10px;
+html,
+body {
+    height:100%;
+}
 
-        .preview {
-            display:block;
-            float:right;
-        }
-    }
+.puzzle {
+    height:100%;
+    background-color:cyan;
+}
+
+canvas {
+    display:block;
 }
