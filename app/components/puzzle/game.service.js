@@ -5,14 +5,15 @@
         .module('hdpuzzles')
         .service('game', gameService);
 
-    gameService.$inject = ['difficultySettings', 'shuffle'];
+    gameService.$inject = ['difficultySettings', 'shuffle', 'statistics'];
 
-    function gameService (difficultySettings, shuffle) {
+    function gameService (difficultySettings, shuffleService, statistics) {
         var difficulty,
             pieces = [];
 
         return {
             "newGame": newGame,
+            "getPieces": getPieces,
             "swapPieces": swapPieces
         };
 
@@ -27,16 +28,21 @@
                 pieces.push(i);
             }
 
-            console.log(pieces);
-            console.log(shuffle.shuffle(pieces));
-            //Shuffle pieces
-            //Start logging statistics
+            pieces = shuffleService.shuffle(pieces);
 
-            //Listen for user input (channeled through the controller)
+            statistics.startTimer();
+        }
+
+        function getPieces () {
+            return pieces;
         }
 
         function swapPieces (a, b) {
-
+            /*
+            Todo:
+            - swap the piece
+            - statistics.increment
+            */
         }
     }
 })();

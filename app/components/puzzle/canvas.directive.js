@@ -10,10 +10,12 @@
     function hdpuzzlesCanvasDirective ($window) {
         return {
             scope: {
-                pieces: '='
+                image: '@',
+                difficulty: '@',
+                preview: '='
             },
-            link: function (scope) {
-                //If the pieces are in the correct order: just show the image, else draw the puzzle stuff
+            link: function () {
+
 
                 angular.element($window).on('resize', function () {
                     //Stuff
