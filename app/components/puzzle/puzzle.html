@@ -1,5 +1,5 @@
-<hdpuzzles-canvas ng-if="showPreview" image="{{image}}" preview="true"></hdpuzzles-canvas>
-<hdpuzzles-canvas ng-if="state === 'PLAYING'" image="{{image}}" difficulty={{difficulty}}" preview="false"></hdpuzzles-canvas>
+<hdpuzzles-canvas ng-if="showPreview" image="images/{{image}}" preview="true"></hdpuzzles-canvas>
+<hdpuzzles-canvas ng-if="state === 'PLAYING'" image="images/{{image}}" difficulty={{difficulty}}" preview="false"></hdpuzzles-canvas>
 
 <div ng-if="state === 'NEW'">
     <button ng-click="newGame('EASY')">Easy (24 pieces)</button>

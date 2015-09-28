@@ -14,14 +14,21 @@
                 difficulty: '@',
                 preview: '='
             },
-            link: function () {
+            link: function (scope, element) {
+                var image;
 
+                image = new $window.Image();
+                image.src = scope.image;
+                image.onload = render;
 
-                angular.element($window).on('resize', function () {
-                    //Stuff
-                });
+                function render () {
+                    var context = element.find('canvas')[0].getContext('2d');
+                    context.drawImage(image, 0, 0, 800, 600);
+                }
+
+                angular.element($window).on('resize', render);
             },
-            template: '<canvas></canvas>'
+            template: '<canvas width="800" height="450"></canvas>'
         };
     }
 })();
