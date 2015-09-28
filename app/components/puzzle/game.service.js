@@ -6,14 +6,15 @@
         .service('game', gameService);
 
     function gameService () {
-        var pieces = [];
+        var difficulty,
+            pieces = [];
 
         return {
             "new": newGame,
             "swapPieces": swapPieces
         };
 
-        function newGame () {
+        function newGame (difficulty) {
             //Difficulty
             //Make an array of pieces
             //Shuffle pieces

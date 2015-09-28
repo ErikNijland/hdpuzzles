@@ -9,7 +9,8 @@
 
     function apiService ($q) {
         return {
-            "query": query
+            "query": query,
+            "get": get
         };
 
         function query () {
@@ -76,6 +77,16 @@
                 "id": 10,
                 "filename": "10.jpg"
             }]);
+
+            return d.promise;
+        }
+
+        function get (id) {
+            var d = $q.defer();
+
+            d.resolve({
+                "filename": "4.jpg"
+            });
 
             return d.promise;
         }
