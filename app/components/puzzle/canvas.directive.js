@@ -23,7 +23,14 @@
 
                 function render () {
                     var context = element.find('canvas')[0].getContext('2d');
-                    context.drawImage(image, 0, 0, 800, 600);
+
+                    if (scope.preview) {
+                        //Draw the complete image
+                        context.drawImage(image, 0, 0, 800, 600);
+                    } else {
+                        //Draw the puzzle pieces
+
+                    }
                 }
 
                 angular.element($window).on('resize', render);
