@@ -1,8 +1,15 @@
 .logo {
+    height:60px;
+    line-height:60px;
     font-family:'Fjalla One', sans-serif;
     font-size:48px;
 
-    span {
+    .logo__dot-com {
         font-size:28px;
+    }
+
+    a {
+        color:$black;
+        text-decoration:none;
     }
 }

@@ -5,7 +5,28 @@ body {
 
 .puzzle {
     height:100%;
-    background-color:cyan;
+
+
+    .puzzle__header {
+        position:relative;
+        height:80px;
+        padding:10px;
+
+        .preview {
+            position:absolute;
+            top:10px;
+            right:10px;
+
+            img {
+                border-radius:2px;
+            }
+        }
+    }
+
+    .puzzle__canvas {
+        height:calc(100% - 80px);
+        background-color:$black;
+    }
 }
 
 canvas {
