@@ -6,7 +6,6 @@ body {
 .puzzle {
     height:100%;
 
-
     .puzzle__header {
         position:relative;
         height:80px;
@@ -27,8 +26,12 @@ body {
         height:calc(100% - 80px);
         background-color:$black;
     }
-}
 
-canvas {
-    display:block;
+    .puzzle__overlay {
+        position:absolute;
+        right:0;
+        bottom:0;
+        left:0;
+        height:80px;
+    }
 }
