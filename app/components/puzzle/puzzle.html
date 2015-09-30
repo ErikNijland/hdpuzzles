@@ -6,10 +6,9 @@
             <img width="120" height="60" ng-src="images/thumbnails/{{image}}" alt="">
         </div>
     </div>
-    <div class="puzzle__canvas">
-        <hdpuzzles-canvas ng-if="showPreview" image="images/{{image}}" preview="true"></hdpuzzles-canvas>
-        <!--hdpuzzles-canvas ng-if="state === 'PLAYING'" image="images/{{image}}" difficulty={{difficulty}}" preview="false"></hdpuzzles-canvas-->
-    </div>
+
+    <hdpuzzles-canvas ng-if="showPreview" image="images/{{image}}" preview="true"></hdpuzzles-canvas>
+    <!--hdpuzzles-canvas ng-if="state === 'PLAYING'" image="images/{{image}}" difficulty={{difficulty}}" preview="false"></hdpuzzles-canvas-->
 
     <div ng-if="state === 'NEW'" class="puzzle__overlay" overlay>
         <button ng-click="newGame('EASY')">Easy (24 pieces)</button>
