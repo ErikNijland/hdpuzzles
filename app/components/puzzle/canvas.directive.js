@@ -21,6 +21,8 @@
                     canvasHeight,
                     canvasOffsetX,
                     canvasOffsetY,
+                    pieceWidth,
+                    pieceHeight,
                     image,
                     canvas,
                     context;
@@ -47,7 +49,9 @@
                 function calculateDimensions () {
                     var containerDiv,
                         minimumPadding = 2,
-                        imageResizeRatio;
+                        imageResizeRatio,
+                        numberOfColumns,
+                        numberOfRows;
 
                     containerDiv = document.querySelector('.puzzle__canvas');
 
@@ -60,11 +64,19 @@
                         image.height / (availableHeight - minimumPadding * 2)
                     );
 
-                    if (scope.preview) {
-                        canvasWidth = Math.floor(image.width / imageResizeRatio);
-                        canvasHeight = Math.floor(image.height / imageResizeRatio);
-                    } else {
-                        //Todo: calculation based on number of columns and rows
+                    canvasWidth = Math.floor(image.width / imageResizeRatio);
+                    canvasHeight = Math.floor(image.height / imageResizeRatio);
+
+                    if (scope.difficulty) {
+                        //Making sure that each puzzle piece has the same dimensions
+                        numberOfColumns = difficultySettings[scope.difficulty].NUMBER_OF_COLUMNS;
+                        numberOfRows = difficultySettings[scope.difficulty].NUMBER_OF_ROWS;
+
+                        pieceWidth = Math.floor(canvasWidth / numberOfColumns);
+                        pieceHeight = Math.floor(canvasHeight / numberOfRows);
+
+                        canvasWidth = pieceWidth * numberOfColumns;
+                        canvasHeight = pieceHeight * numberOfRows;
                     }
 
                     canvasOffsetX = Math.round((availableWidth - canvasWidth) / 2);
@@ -82,7 +94,8 @@
                         //Draw the complete image
                         context.drawImage(image, 0, 0, image.width, image.height, 0, 0, canvasWidth, canvasHeight);
                     } else {
-                        //Draw the puzzle pieces
+                        //Todo: draw the puzzle pieces
+                        context.drawImage(image, 0, 0, image.width, image.height, 0, 0, canvasWidth, canvasHeight);
                     }
                 }
             },
