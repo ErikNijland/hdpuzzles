@@ -5,24 +5,27 @@
         .module('hdpuzzles')
         .directive('hdpuzzlesCanvas', hdpuzzlesCanvasDirective);
 
-    hdpuzzlesCanvasDirective.$inject = ['$window', '$timeout'];
+    hdpuzzlesCanvasDirective.$inject = ['$window', '$document', '$timeout'];
 
-    function hdpuzzlesCanvasDirective ($window, $timeout) {
+    function hdpuzzlesCanvasDirective ($window, $document, $timeout) {
         return {
             scope: {
                 image: '@',
                 difficulty: '@',
                 preview: '='
             },
+            //replace: true,
             link: function (scope, element) {
                 var availableWidth,
                     availableHeight,
                     canvasWidth,
                     canvasHeight,
                     image,
+                    canvas,
                     context;
 
-                context = element.find('canvas')[0].getContext('2d');
+                canvas = element.find('canvas')[0];
+                context = canvas.getContext('2d');
 
                 calculateDimensions();
 
@@ -31,6 +34,10 @@
                 image.onload = render;
 
                 function calculateDimensions () {
+                    console.log(canvas.clientWidth);
+                    console.log(canvas.clientHeight);
+                    //console.log(angular.element($document.querySelectorAll('.puzzle__canvas')[0]).clientHeight);
+
                     availableWidth = 1425;
                     availableHeight = 605;
                     canvasWidth = 1425;
@@ -54,7 +61,7 @@
                     render();
                 });
             },
-            template: '<canvas width="{{canvasWidth}}" height="{{canvasHeight}}"></canvas>'
+            template: '<canvas></canvas>'
         };
     }
 })();
