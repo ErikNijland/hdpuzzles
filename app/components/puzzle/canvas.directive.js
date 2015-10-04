@@ -12,7 +12,7 @@
             scope: {
                 image: '@',
                 difficulty: '@',
-                preview: '='
+                showPreview: '='
             },
             link: function (scope, element) {
                 var image,
