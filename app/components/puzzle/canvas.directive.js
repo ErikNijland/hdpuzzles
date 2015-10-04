@@ -104,7 +104,7 @@
 
                     /*
                      * Render black lines between non-matching puzzle pieces. The pieces aren't
-                     * necessarily on the right position.
+                     * necessarily on the correct position.
                      */
                     contextPuzzle.lineWidth = 2;
 
