@@ -7,7 +7,7 @@
 
     hdpuzzlesCanvasDirective.$inject = ['calculateDimensions', 'game'];
 
-    function hdpuzzlesCanvasDirective (calculateDimensionsService, game) {
+    function hdpuzzlesCanvasDirective (calculateDimensionsService, gameService) {
         return {
             scope: {
                 image: '@',
@@ -17,22 +17,28 @@
             link: function (scope, element) {
                 var image,
                     canvasElements,
-                    canvasProperties;
+                    canvasProperties,
+                    contextPreview,
+                    contextPuzzle;
 
                 initialize();
 
                 function initialize () {
                     canvasElements = element.find('canvas');
+                    contextPreview = document.querySelector('.js-canvas-preview').getContext('2d');
+                    contextPuzzle =  document.querySelector('.js-canvas-puzzle').getContext('2d');
 
                     image = new window.Image();
                     image.src = scope.image;
                     image.onload = function () {
                         calculateDimensions();
-                        render();
+                        renderPreview();
+                        renderPuzzle();
 
                         angular.element(window).on('resize', function () {
                             calculateDimensions();
-                            render();
+                            renderPreview();
+                            renderPuzzle();
                         });
                     };
                 }
@@ -50,44 +56,14 @@
                 }
 
                 function renderPreview () {
-                    var canvasPreview = document.querySelector('.js-canvas-preview'),
-                        canvasContent = canvasPreview[0].getContext('2d');
+                    contextPreview.drawImage(image, 0, 0, image.width, image.height, 0, 0, canvasProperties.width, canvasProperties.height);
                 }
 
-                function renderGame () {
+                function renderPuzzle () {
+                    //Render all the pieces, use the preview as a source
 
                 }
 
-                function render () {
-
-                }
-                /*
-                function render () {
-                    var canvasPreview,
-                        canvasGame;
-
-                    canvasGame = document.querySelector('.js-canvas-puzzle');
-
-                    if (scope.preview) {
-                        //Draw the complete image
-                        context.drawImage(image, 0, 0, image.width, image.height, 0, 0, canvasWidth, canvasHeight);
-                    } else {
-                        //Todo: draw the puzzle pieces
-                        var sourceCanvas,
-                            sourceContext,
-                            pieces = gameService.getPieces(),
-                            i;
-
-                        for (i = 0; i < pieces.length; i++) {
-
-                        }
-
-
-                        console.log(pieces);
-
-                    }
-                }
-                */
                 function getPiecePosition (index) {
 
                 }
