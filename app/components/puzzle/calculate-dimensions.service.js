@@ -52,8 +52,14 @@
             return output;
         }
 
-        function getPiecePosition (index) {
+        function getPiecePosition (index, difficulty) {
+            var column = index % difficultySettings[difficulty].NUMBER_OF_COLUMNS,
+                row = Math.floor(index / difficultySettings[difficulty].NUMBER_OF_COLUMNS);
 
+            return {
+                "column": column,
+                "row": row
+            };
         }
     }
 })();

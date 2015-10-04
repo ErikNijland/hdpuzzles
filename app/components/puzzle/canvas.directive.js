@@ -18,6 +18,7 @@
                 var image,
                     canvasElements,
                     canvasProperties,
+                    canvasPreview,
                     contextPreview,
                     contextPuzzle;
 
@@ -25,28 +26,33 @@
 
                 function initialize () {
                     canvasElements = element.find('canvas');
-                    contextPreview = document.querySelector('.js-canvas-preview').getContext('2d');
+                    canvasPreview = document.querySelector('.js-canvas-preview');
+                    contextPreview = canvasPreview.getContext('2d');
                     contextPuzzle =  document.querySelector('.js-canvas-puzzle').getContext('2d');
 
                     image = new window.Image();
                     image.src = scope.image;
                     image.onload = function () {
-                        calculateDimensions();
+                        setDimensions();
                         renderPreview();
 
                         angular.element(window).on('resize', function () {
-                            calculateDimensions();
+                            setDimensions();
                             renderPreview();
                             renderPuzzle();
                         });
                     };
 
-                    scope.$watch('difficulty', renderPuzzle);
+                    scope.$watch('difficulty', function () {
+                        setDimensions();
+                        renderPreview();
+                        renderPuzzle();
+                    });
                 }
 
-                function calculateDimensions () {
+                function setDimensions () {
                     var container = document.querySelector('.puzzle__canvas');
-
+                    console.log(scope.difficulty);
                     canvasProperties = calculateDimensionsService.getCanvasProperties(container, image, scope.difficulty);
 
                     angular.element(canvasElements).prop('width', canvasProperties.width);
@@ -75,7 +81,21 @@
                         var sourcePosition,
                             destinationPosition;
 
-                        //contextPuzzle.drawImage(contextPreview)
+                        sourcePosition = calculateDimensionsService.getPiecePosition(pieces[i], scope.difficulty);
+                        destinationPosition = calculateDimensionsService.getPiecePosition(i, scope.difficulty);
+                        console.log(canvasProperties);
+
+                        contextPuzzle.drawImage(
+                            canvasPreview,
+                            sourcePosition.column * canvasProperties.pieceWidth,
+                            sourcePosition.row * canvasProperties.pieceHeight,
+                            canvasProperties.pieceWidth,
+                            canvasProperties.pieceHeight,
+                            destinationPosition.column * canvasProperties.pieceWidth,
+                            destinationPosition.row * canvasProperties.pieceHeight,
+                            canvasProperties.pieceWidth,
+                            canvasProperties.pieceHeight
+                        );
                     }
                 }
             },
