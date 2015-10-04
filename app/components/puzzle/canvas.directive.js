@@ -30,6 +30,7 @@
                     contextPreview = canvasPreview.getContext('2d');
                     contextPuzzle =  document.querySelector('.js-canvas-puzzle').getContext('2d');
 
+                    //Used when drawing lines between non-matching pieces
                     image = new window.Image();
                     image.src = scope.image;
                     image.onload = function () {
@@ -43,7 +44,11 @@
                         });
                     };
 
-                    scope.$watch('difficulty', function () {
+                    scope.$watch('difficulty', function (difficulty) {
+                        if (!difficulty) {
+                            return;
+                        }
+
                         setDimensions();
                         renderPreview();
                         renderPuzzle();
@@ -101,28 +106,28 @@
                      * Render black lines between non-matching puzzle pieces. The pieces aren't
                      * necessarily on the right position.
                      */
+                    contextPuzzle.lineWidth = 2;
+
                     var piecePosition;
 
                     for (i = 0; i < pieces.length; i++) {
-                        if (!gameService.hasMatchingPiece(i, 'right')) {
-                            //Draw line to the right of this piece
-                            console.log('draw right side');
-                            piecePosition = calculateDimensionsService.getPiecePosition(i, scope.difficulty);
+                        piecePosition = calculateDimensionsService.getPiecePosition(i, scope.difficulty);
 
-                            contextPuzzle.lineWidth = 2;
+                        if (!gameService.hasMatchingPiece(i, 'right')) {
                             contextPuzzle.beginPath();
+
                             contextPuzzle.moveTo((piecePosition.column + 1) * canvasProperties.pieceWidth - 1, piecePosition.row * canvasProperties.pieceHeight);
                             contextPuzzle.lineTo((piecePosition.column + 1) * canvasProperties.pieceWidth - 1, (piecePosition.row + 1) * canvasProperties.pieceHeight);
-
-                            console.log((piecePosition.column + 1) * canvasProperties.pieceWidth - 1, piecePosition.row * canvasProperties.pieceHeight);
-                            console.log((piecePosition.column + 1) * canvasProperties.pieceWidth - 1, (piecePosition.row + 1) * canvasProperties.pieceHeight);
-                            console.log('---');
 
                             contextPuzzle.stroke();
                         }
 
-                        if (gameService.hasMatchingPiece(i, 'bottom')) {
-                            //Draw line to the bottom of this piece
+                        if (!gameService.hasMatchingPiece(i, 'bottom')) {
+                            contextPuzzle.beginPath();
+                            contextPuzzle.moveTo(piecePosition.column * canvasProperties.pieceWidth, (piecePosition.row + 1) * canvasProperties.pieceHeight - 1);
+                            contextPuzzle.lineTo((piecePosition.column + 1) * canvasProperties.pieceWidth, (piecePosition.row + 1) * canvasProperties.pieceHeight - 1);
+
+                            contextPuzzle.stroke();
                         }
                     }
                 }

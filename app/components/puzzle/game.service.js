@@ -56,7 +56,14 @@
                     }
 
                     break;
+
                 case 'bottom':
+                    if (index > numberOfColumns * (numberOfRows - 1)) {
+                        //Is this piece at the bottom?
+                        return false;
+                    } else {
+                        return pieces[index] + numberOfColumns === pieces[index + numberOfColumns];
+                    }
             }
         }
 
