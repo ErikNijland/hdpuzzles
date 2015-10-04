@@ -40,10 +40,12 @@
                 }
 
                 function calculateDimensions () {
-                    var container = document.querySelector('.puzzle__canvas');
+                    var container = document.querySelector('.puzzle__canvas'),
+                        numberOfColumns,
+                        numberOfRows;
 
-                    canvasProperties = calculateDimensionsService.calculate(container, image);
-
+                    canvasProperties = calculateDimensionsService.calculate(container, image, scope.difficulty);
+                    console.log(canvas);
                     angular.element(canvas).prop('width', canvasProperties.width);
                     angular.element(canvas).prop('height', canvasProperties.height);
 
@@ -56,6 +58,10 @@
                 }
 
                 function renderGame () {
+
+                }
+
+                function render () {
 
                 }
                 /*
