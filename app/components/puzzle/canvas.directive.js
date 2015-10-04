@@ -16,15 +16,13 @@
             },
             link: function (scope, element) {
                 var image,
-                    canvas,
-                    context,
+                    canvasElements,
                     canvasProperties;
 
                 initialize();
 
                 function initialize () {
-                    canvas = element.find('canvas');
-                    //context = canvas.getContext('2d');
+                    canvasElements = element.find('canvas');
 
                     image = new window.Image();
                     image.src = scope.image;
@@ -40,21 +38,20 @@
                 }
 
                 function calculateDimensions () {
-                    var container = document.querySelector('.puzzle__canvas'),
-                        numberOfColumns,
-                        numberOfRows;
+                    var container = document.querySelector('.puzzle__canvas');
 
                     canvasProperties = calculateDimensionsService.calculate(container, image, scope.difficulty);
-                    console.log(canvas);
-                    angular.element(canvas).prop('width', canvasProperties.width);
-                    angular.element(canvas).prop('height', canvasProperties.height);
 
-                    angular.element(canvas).css('top', canvasProperties.offsetY + 'px');
-                    angular.element(canvas).css('left', canvasProperties.offsetX + 'px');
+                    angular.element(canvasElements).prop('width', canvasProperties.width);
+                    angular.element(canvasElements).prop('height', canvasProperties.height);
+
+                    angular.element(canvasElements).css('top', canvasProperties.offsetY + 'px');
+                    angular.element(canvasElements).css('left', canvasProperties.offsetX + 'px');
                 }
 
                 function renderPreview () {
-                    var canvasPreview = document.querySelector('.js-canvas-preview');
+                    var canvasPreview = document.querySelector('.js-canvas-preview'),
+                        canvasContent = canvasPreview[0].getContext('2d');
                 }
 
                 function renderGame () {
