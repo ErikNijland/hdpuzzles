@@ -9,6 +9,8 @@
 
     function gameService (difficultySettings, shuffleService, statistics) {
         var difficulty,
+            numberOfColumns,
+            numberOfRows,
             pieces = [];
 
         return {
@@ -18,11 +20,15 @@
             "swapPieces": swapPieces
         };
 
-        function newGame (difficulty) {
+        function newGame (newDifficulty) {
             var numberOfPieces,
                 i;
 
-            numberOfPieces = difficultySettings[difficulty].NUMBER_OF_COLUMNS * difficultySettings[difficulty].NUMBER_OF_ROWS;
+            difficulty = newDifficulty;
+            numberOfColumns = difficultySettings[difficulty].NUMBER_OF_COLUMNS;
+            numberOfRows = difficultySettings[difficulty].NUMBER_OF_ROWS;
+
+            numberOfPieces = numberOfColumns * numberOfRows;
 
             pieces.length = 0;
 
@@ -42,6 +48,14 @@
         function hasMatchingPiece (index, position) {
             switch (position) {
                 case 'right':
+                    if (index % numberOfColumns === numberOfColumns - 1) {
+                        //Is this piece at the right edge of the board?
+                        return false;
+                    } else {
+                        return pieces[index] + 1 === pieces[index + 1];
+                    }
+
+                    break;
                 case 'bottom':
             }
         }

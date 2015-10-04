@@ -101,9 +101,24 @@
                      * Render black lines between non-matching puzzle pieces. The pieces aren't
                      * necessarily on the right position.
                      */
+                    var piecePosition;
+
                     for (i = 0; i < pieces.length; i++) {
-                        if (gameService.hasMatchingPiece(i, 'right')) {
+                        if (!gameService.hasMatchingPiece(i, 'right')) {
                             //Draw line to the right of this piece
+                            console.log('draw right side');
+                            piecePosition = calculateDimensionsService.getPiecePosition(i, scope.difficulty);
+
+                            contextPuzzle.lineWidth = 2;
+                            contextPuzzle.beginPath();
+                            contextPuzzle.moveTo((piecePosition.column + 1) * canvasProperties.pieceWidth - 1, piecePosition.row * canvasProperties.pieceHeight);
+                            contextPuzzle.lineTo((piecePosition.column + 1) * canvasProperties.pieceWidth - 1, (piecePosition.row + 1) * canvasProperties.pieceHeight);
+
+                            console.log((piecePosition.column + 1) * canvasProperties.pieceWidth - 1, piecePosition.row * canvasProperties.pieceHeight);
+                            console.log((piecePosition.column + 1) * canvasProperties.pieceWidth - 1, (piecePosition.row + 1) * canvasProperties.pieceHeight);
+                            console.log('---');
+
+                            contextPuzzle.stroke();
                         }
 
                         if (gameService.hasMatchingPiece(i, 'bottom')) {
