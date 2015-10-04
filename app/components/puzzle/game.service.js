@@ -18,11 +18,12 @@
         };
 
         function newGame (difficulty) {
-            var pieces = [],
-                numberOfPieces,
+            var numberOfPieces,
                 i;
 
             numberOfPieces = difficultySettings[difficulty].NUMBER_OF_COLUMNS * difficultySettings[difficulty].NUMBER_OF_ROWS;
+
+            pieces.length = 0;
 
             for (i = 0; i < numberOfPieces; i++) {
                 pieces.push(i);
