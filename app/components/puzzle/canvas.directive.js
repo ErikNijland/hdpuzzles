@@ -52,7 +52,7 @@
 
                 function setDimensions () {
                     var container = document.querySelector('.puzzle__canvas');
-                    console.log(scope.difficulty);
+
                     canvasProperties = calculateDimensionsService.getCanvasProperties(container, image, scope.difficulty);
 
                     angular.element(canvasElements).prop('width', canvasProperties.width);
@@ -70,8 +70,6 @@
                     if (!scope.difficulty) {
                         return;
                     }
-
-                    console.log('renderPuzzle', canvasProperties);
 
                     //Render all the individual pieces, use the preview as a source
                     var pieces = gameService.getPieces(),
