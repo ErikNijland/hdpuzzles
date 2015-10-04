@@ -67,21 +67,22 @@
                 }
 
                 function renderPuzzle () {
+                    var pieces,
+                        i;
+
                     if (!scope.difficulty) {
                         return;
                     }
 
-                    //Render all the individual pieces, use the preview as a source
-                    var pieces = gameService.getPieces(),
-                        i;
+                    pieces = gameService.getPieces();
 
+                    //Render all the individual pieces, use the preview as the image source
                     for (i = 0; i < pieces.length; i++) {
                         var sourcePosition,
                             destinationPosition;
 
                         sourcePosition = calculateDimensionsService.getPiecePosition(pieces[i], scope.difficulty);
                         destinationPosition = calculateDimensionsService.getPiecePosition(i, scope.difficulty);
-                        console.log(canvasProperties);
 
                         contextPuzzle.drawImage(
                             canvasPreview,
@@ -94,6 +95,20 @@
                             canvasProperties.pieceWidth,
                             canvasProperties.pieceHeight
                         );
+                    }
+
+                    /*
+                     * Render black lines between non-matching puzzle pieces. The pieces aren't
+                     * necessarily on the right position.
+                     */
+                    for (i = 0; i < pieces.length; i++) {
+                        if (gameService.hasMatchingPiece(i, 'right')) {
+                            //Draw line to the right of this piece
+                        }
+
+                        if (gameService.hasMatchingPiece(i, 'bottom')) {
+                            //Draw line to the bottom of this piece
+                        }
                     }
                 }
             },
