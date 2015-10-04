@@ -19,9 +19,9 @@
         };
     }
 
-    PuzzleController.$inject = ['$routeParams', '$scope', 'api', 'game'];
+    PuzzleController.$inject = ['$routeParams', '$scope', '$timeout', 'api', 'game'];
 
-    function PuzzleController ($routeParams, $scope, api, game) {
+    function PuzzleController ($routeParams, $scope, $timeout, api, game) {
         var puzzleId = $routeParams.id;
 
         $scope.state = 'LOADING';
@@ -44,6 +44,10 @@
             $scope.showPreview = false;
 
             game.newGame(difficulty);
+
+            $timeout(function () {
+                $scope.$digest();
+            });
             //Check for events
         }
     }

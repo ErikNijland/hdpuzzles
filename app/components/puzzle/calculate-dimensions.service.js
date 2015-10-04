@@ -9,10 +9,11 @@
 
     function calculateDimensionsService (difficultySettings) {
         return {
-            "calculate": calculate
+            "getCanvasProperties": getCanvasProperties,
+            "getPiecePosition": getPiecePosition
         };
 
-        function calculate (containerElement, image, difficulty) {
+        function getCanvasProperties (containerElement, image, difficulty) {
             var availableWidth,
                 availableHeight,
                 minimumPadding = 2,
@@ -49,6 +50,10 @@
             output.offsetY = Math.round((availableHeight - output.height) / 2);
 
             return output;
+        }
+
+        function getPiecePosition (index) {
+
         }
     }
 })();

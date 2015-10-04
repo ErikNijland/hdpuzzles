@@ -33,7 +33,6 @@
                     image.onload = function () {
                         calculateDimensions();
                         renderPreview();
-                        renderPuzzle();
 
                         angular.element(window).on('resize', function () {
                             calculateDimensions();
@@ -41,12 +40,14 @@
                             renderPuzzle();
                         });
                     };
+
+                    scope.$watch('difficulty', renderPuzzle);
                 }
 
                 function calculateDimensions () {
                     var container = document.querySelector('.puzzle__canvas');
 
-                    canvasProperties = calculateDimensionsService.calculate(container, image, scope.difficulty);
+                    canvasProperties = calculateDimensionsService.getCanvasProperties(container, image, scope.difficulty);
 
                     angular.element(canvasElements).prop('width', canvasProperties.width);
                     angular.element(canvasElements).prop('height', canvasProperties.height);
@@ -60,12 +61,22 @@
                 }
 
                 function renderPuzzle () {
-                    //Render all the pieces, use the preview as a source
+                    if (!scope.difficulty) {
+                        return;
+                    }
 
-                }
+                    console.log('renderPuzzle', canvasProperties);
 
-                function getPiecePosition (index) {
+                    //Render all the individual pieces, use the preview as a source
+                    var pieces = gameService.getPieces(),
+                        i;
 
+                    for (i = 0; i < pieces.length; i++) {
+                        var sourcePosition,
+                            destinationPosition;
+
+                        //contextPuzzle.drawImage(contextPreview)
+                    }
                 }
             },
             templateUrl: 'puzzle/puzzle-canvas.html'
