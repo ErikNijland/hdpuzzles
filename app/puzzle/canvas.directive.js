@@ -132,7 +132,7 @@
                     }
                 }
             },
-            templateUrl: 'puzzle/puzzle-canvas.html'
+            templateUrl: 'puzzle-canvas.html'
         };
     }
 })();
