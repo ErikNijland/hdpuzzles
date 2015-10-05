@@ -9,7 +9,7 @@
         return {
             restrict: 'A',
             transclude: true,
-            templateUrl: 'overlay.html'
+            templateUrl: 'overlay/overlay.html'
         };
     }
 })();

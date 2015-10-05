@@ -15,7 +15,7 @@
     function puzzleDirective () {
         return {
             controller: PuzzleController,
-            templateUrl: 'puzzle.html'
+            templateUrl: 'puzzle/puzzle.html'
         };
     }
 

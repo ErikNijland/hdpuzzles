@@ -15,6 +15,7 @@
                 difficulty: '@',
                 showPreview: '='
             },
+            templateUrl: 'puzzle/puzzle-canvas.html',
             link: function (scope, element, attrs, PuzzleController) {
                 var image,
                     canvasElements,
@@ -138,8 +139,7 @@
                         }
                     }
                 }
-            },
-            templateUrl: 'puzzle-canvas.html'
+            }
         };
     }
 })();
