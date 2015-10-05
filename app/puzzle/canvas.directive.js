@@ -5,9 +5,9 @@
         .module('hdpuzzles')
         .directive('hdpuzzlesCanvas', hdpuzzlesCanvasDirective);
 
-    hdpuzzlesCanvasDirective.$inject = ['calculateDimensions', 'game'];
+    hdpuzzlesCanvasDirective.$inject = ['$window', '$document', 'calculateDimensions', 'game'];
 
-    function hdpuzzlesCanvasDirective (calculateDimensionsService, gameService) {
+    function hdpuzzlesCanvasDirective ($window, $document, calculateDimensionsService, gameService) {
         return {
             scope: {
                 image: '@',
@@ -26,18 +26,18 @@
 
                 function initialize () {
                     canvasElements = element.find('canvas');
-                    canvasPreview = document.querySelector('.js-canvas-preview');
+                    canvasPreview = $document[0].querySelector('.js-canvas-preview');
                     contextPreview = canvasPreview.getContext('2d');
-                    contextPuzzle =  document.querySelector('.js-canvas-puzzle').getContext('2d');
+                    contextPuzzle =  $document[0].querySelector('.js-canvas-puzzle').getContext('2d');
 
                     //Used when drawing lines between non-matching pieces
-                    image = new window.Image();
+                    image = new $window.Image();
                     image.src = scope.image;
                     image.onload = function () {
                         setDimensions();
                         renderPreview();
 
-                        angular.element(window).on('resize', function () {
+                        angular.element($window).on('resize', function () {
                             setDimensions();
                             renderPreview();
                             renderPuzzle();
@@ -56,7 +56,7 @@
                 }
 
                 function setDimensions () {
-                    var container = document.querySelector('.puzzle__canvas');
+                    var container = $document[0].querySelector('.puzzle__canvas');
 
                     canvasProperties = calculateDimensionsService.getCanvasProperties(container, image, scope.difficulty);
 

@@ -8,9 +8,7 @@
   "funcscope": true,
   "futurehostile": true,
   "globals": {
-    "angular": false,
-    "document": false,
-    "window": false
+    "angular": false
   },
   "latedef": "nofunc",
   "strict": true,
