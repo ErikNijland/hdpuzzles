@@ -139,12 +139,13 @@
                     }
                 }
 
-                function drag () {
-
+                function drag (event) {
+                    selectedPiece = getPieceByMouseCursor(event);
                 }
 
-                function drop () {
-                    //Sometimes >> PuzzleController.swapPieces
+                function drop (event) {
+                    //if selectedPiece check
+                    PuzzleController.swapPieces(selectedPiece, getPieceByMouseCursor(event));
                 }
 
                 function move () {
@@ -152,7 +153,10 @@
                 }
 
                 function getPieceByMouseCursor (mouseEvent) {
+                    var positionX = mouseEvent.pageX - mouseEvent.target.getBoundingClientRect().left,
+                        positionY = mouseEvent.pageY - mouseEvent.target.getBoundingClientRect().top;
 
+                    console.log(positionX, positionY);
                 }
             }
         };
