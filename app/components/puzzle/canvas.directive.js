@@ -34,33 +34,27 @@
                     contextPreview = canvasPreview.getContext('2d');
                     contextPuzzle =  canvasPuzzle.getContext('2d');
 
-                    //Used when drawing lines between non-matching pieces
                     image = new $window.Image();
                     image.src = scope.image;
                     image.onload = function () {
                         setDimensions();
                         renderPreview();
 
-                        angular.element($window).on('resize', function () {
-                            setDimensions();
-                            renderPreview();
-                            renderPuzzle();
-                        });
+                        angular.element($window).on('resize', setupCanvas);
                     };
 
-                    scope.$watch('difficulty', function (difficulty) {
-                        if (!difficulty) {
-                            return;
-                        }
+                    angular.element(canvasPuzzle).on('mousedown', PuzzleController.drag);
+                    angular.element(canvasPuzzle).on('mouseup', PuzzleController.drop);
+                    angular.element(canvasPuzzle).on('mousemove', PuzzleController.move);
 
-                        setDimensions();
-                        renderPreview();
-                        renderPuzzle();
+                    //Todo: make it clear that this is a new game...
+                    scope.$watch('difficulty', setupCanvas);
+                }
 
-                        angular.element(canvasPuzzle).on('mousedown', PuzzleController.drag);
-                        angular.element(canvasPuzzle).on('mouseup', PuzzleController.drop);
-                        angular.element(canvasPuzzle).on('mousemove', PuzzleController.move);
-                    });
+                function setupCanvas () {
+                    setDimensions();
+                    renderPreview();
+                    renderPuzzle();
                 }
 
                 function setDimensions () {
