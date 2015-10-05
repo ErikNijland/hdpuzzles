@@ -156,6 +156,11 @@
                     var positionX = mouseEvent.pageX - mouseEvent.target.getBoundingClientRect().left,
                         positionY = mouseEvent.pageY - mouseEvent.target.getBoundingClientRect().top;
 
+                    //canvasProperties.pieceWidth;
+                    //canvasProperties.pieceHeight;
+
+                    //calculateDimensionsService.getPieceIndex(column, row)
+
                     console.log(positionX, positionY);
                 }
             }
