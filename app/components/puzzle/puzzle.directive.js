@@ -22,8 +22,7 @@
     PuzzleController.$inject = ['$routeParams', '$scope', '$timeout', 'api', 'game'];
 
     function PuzzleController ($routeParams, $scope, $timeout, api, game) {
-        var puzzleId = $routeParams.id,
-            puzzleCanvas;
+        var puzzleId = $routeParams.id;
 
         $scope.state = 'LOADING';
 
@@ -51,22 +50,17 @@
             });
         }
 
-        function drag () {
-            console.log('drag');
-        }
-
-        function drop () {
-            console.log('drop');
-        }
-
-        function move () {
-            console.log('move');
+        function swapPieces (a, b) {
+            /*
+            - Check if a !== b
+            - SWAP_DEFAULT OR SWAP_MATCH
+            - log statstics
+            - check if puzzle is complete
+            */
         }
 
         return {
-            "drag": drag,
-            "drop": drop,
-            "move": move
+            "swapPieces": swapPieces
         };
     }
 })();

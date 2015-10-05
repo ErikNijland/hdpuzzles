@@ -24,7 +24,8 @@
                     canvasPreview,
                     canvasPuzzle,
                     contextPreview,
-                    contextPuzzle;
+                    contextPuzzle,
+                    selectedPiece;
 
                 initialize();
 
@@ -44,9 +45,9 @@
                         angular.element($window).on('resize', setupCanvas);
                     };
 
-                    angular.element(canvasPuzzle).on('mousedown', PuzzleController.drag);
-                    angular.element(canvasPuzzle).on('mouseup', PuzzleController.drop);
-                    angular.element(canvasPuzzle).on('mousemove', PuzzleController.move);
+                    angular.element(canvasPuzzle).on('mousedown', drag);
+                    angular.element(canvasPuzzle).on('mouseup', drop);
+                    angular.element(canvasPuzzle).on('mousemove', move);
 
                     scope.$watch('state', function (newState) {
                         if (newState === 'PLAYING') {
@@ -136,6 +137,22 @@
                             contextPuzzle.stroke();
                         }
                     }
+                }
+
+                function drag () {
+
+                }
+
+                function drop () {
+                    //Sometimes >> PuzzleController.swapPieces
+                }
+
+                function move () {
+
+                }
+
+                function getPieceByMouseCursor (mouseEvent) {
+
                 }
             }
         };
