@@ -22,7 +22,8 @@
     PuzzleController.$inject = ['$routeParams', '$scope', '$timeout', 'api', 'game'];
 
     function PuzzleController ($routeParams, $scope, $timeout, api, game) {
-        var puzzleId = $routeParams.id;
+        var puzzleId = $routeParams.id,
+            puzzleCanvas;
 
         $scope.state = 'LOADING';
 
@@ -48,7 +49,24 @@
             $timeout(function () {
                 $scope.$digest();
             });
-            //Check for events
         }
+
+        function drag () {
+            console.log('drag');
+        }
+
+        function drop () {
+            console.log('drop');
+        }
+
+        function move () {
+            console.log('move');
+        }
+
+        return {
+            "drag": drag,
+            "drop": drop,
+            "move": move
+        };
     }
 })();

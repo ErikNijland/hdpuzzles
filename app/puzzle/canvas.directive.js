@@ -9,16 +9,18 @@
 
     function hdpuzzlesCanvasDirective ($window, $document, calculateDimensionsService, gameService) {
         return {
+            require: '^puzzle',
             scope: {
                 image: '@',
                 difficulty: '@',
                 showPreview: '='
             },
-            link: function (scope, element) {
+            link: function (scope, element, attrs, PuzzleController) {
                 var image,
                     canvasElements,
                     canvasProperties,
                     canvasPreview,
+                    canvasPuzzle,
                     contextPreview,
                     contextPuzzle;
 
@@ -27,8 +29,9 @@
                 function initialize () {
                     canvasElements = element.find('canvas');
                     canvasPreview = $document[0].querySelector('.js-canvas-preview');
+                    canvasPuzzle = $document[0].querySelector('.js-canvas-puzzle');
                     contextPreview = canvasPreview.getContext('2d');
-                    contextPuzzle =  $document[0].querySelector('.js-canvas-puzzle').getContext('2d');
+                    contextPuzzle =  canvasPuzzle.getContext('2d');
 
                     //Used when drawing lines between non-matching pieces
                     image = new $window.Image();
@@ -52,6 +55,10 @@
                         setDimensions();
                         renderPreview();
                         renderPuzzle();
+
+                        angular.element(canvasPuzzle).on('mousedown', PuzzleController.drag);
+                        angular.element(canvasPuzzle).on('mouseup', PuzzleController.drop);
+                        angular.element(canvasPuzzle).on('mousemove', PuzzleController.move);
                     });
                 }
 
