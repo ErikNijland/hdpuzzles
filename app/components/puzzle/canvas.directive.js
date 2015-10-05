@@ -13,6 +13,7 @@
             scope: {
                 image: '@',
                 difficulty: '@',
+                state: '@',
                 showPreview: '='
             },
             templateUrl: 'puzzle/puzzle-canvas.html',
@@ -47,8 +48,11 @@
                     angular.element(canvasPuzzle).on('mouseup', PuzzleController.drop);
                     angular.element(canvasPuzzle).on('mousemove', PuzzleController.move);
 
-                    //Todo: make it clear that this is a new game...
-                    scope.$watch('difficulty', setupCanvas);
+                    scope.$watch('state', function (newState) {
+                        if (newState === 'PLAYING') {
+                            setupCanvas();
+                        }
+                    });
                 }
 
                 function setupCanvas () {
