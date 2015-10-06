@@ -5,9 +5,9 @@
         .module('hdpuzzles')
         .directive('hdpuzzlesCanvas', hdpuzzlesCanvasDirective);
 
-    hdpuzzlesCanvasDirective.$inject = ['$window', '$document', 'calculateDimensions', 'game'];
+    hdpuzzlesCanvasDirective.$inject = ['$window', '$document', 'calculateDimensions', 'game', 'difficultySettings'];
 
-    function hdpuzzlesCanvasDirective ($window, $document, calculateDimensionsService, gameService) {
+    function hdpuzzlesCanvasDirective ($window, $document, calculateDimensionsService, gameService, difficultySettings) {
         return {
             require: '^puzzle',
             scope: {
@@ -140,28 +140,32 @@
                 }
 
                 function drag (event) {
-                    selectedPiece = getPieceByMouseCursor(event);
+                    selectedPiece = getPieceIndex(event);
                 }
 
                 function drop (event) {
                     //if selectedPiece check
-                    PuzzleController.swapPieces(selectedPiece, getPieceByMouseCursor(event));
+                    PuzzleController.swapPieces(selectedPiece, getPieceIndex(event));
+                    selectedPiece = null;
                 }
 
                 function move () {
 
                 }
 
-                function getPieceByMouseCursor (mouseEvent) {
-                    var positionX = mouseEvent.pageX - mouseEvent.target.getBoundingClientRect().left,
-                        positionY = mouseEvent.pageY - mouseEvent.target.getBoundingClientRect().top;
+                function getPieceIndex (mouseEvent) {
+                    var positionX,
+                        positionY,
+                        column,
+                        row;
 
-                    //canvasProperties.pieceWidth;
-                    //canvasProperties.pieceHeight;
+                    positionX = mouseEvent.pageX - mouseEvent.target.getBoundingClientRect().left;
+                    positionY = mouseEvent.pageY - mouseEvent.target.getBoundingClientRect().top;
 
-                    //calculateDimensionsService.getPieceIndex(column, row)
+                    column = Math.floor(positionX / canvasProperties.pieceWidth);
+                    row = Math.floor(positionY / canvasProperties.pieceHeight);
 
-                    console.log(positionX, positionY);
+                    return row * difficultySettings[scope.difficulty].NUMBER_OF_COLUMNS + column;
                 }
             }
         };
