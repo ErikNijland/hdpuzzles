@@ -51,6 +51,7 @@
         }
 
         function swapPieces (a, b) {
+            console.log('swap: ', a, b);
             /*
             - Check if a !== b
             - SWAP_DEFAULT OR SWAP_MATCH
