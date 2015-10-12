@@ -16,6 +16,7 @@
         return {
             "newGame": newGame,
             "getPieces": getPieces,
+            "getPieceByIndex": getPieceByIndex,
             "hasMatchingPiece": hasMatchingPiece,
             "swapPieces": swapPieces
         };
@@ -43,6 +44,10 @@
 
         function getPieces () {
             return pieces;
+        }
+
+        function getPieceByIndex (index) {
+            return pieces[index];
         }
 
         function hasMatchingPiece (index, position) {

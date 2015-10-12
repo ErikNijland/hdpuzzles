@@ -25,7 +25,8 @@
                     canvasPuzzle,
                     contextPreview,
                     contextPuzzle,
-                    selectedPiece;
+                    selectedPiece,
+                    cursorPosition;
 
                 initialize();
 
@@ -80,6 +81,8 @@
 
                 function renderPuzzle () {
                     var pieces,
+                        sourcePosition,
+                        destinationPosition,
                         i;
 
                     if (!scope.difficulty) {
@@ -90,9 +93,6 @@
 
                     //Render all the individual pieces, use the preview as the image source
                     for (i = 0; i < pieces.length; i++) {
-                        var sourcePosition,
-                            destinationPosition;
-
                         sourcePosition = calculateDimensionsService.getPiecePosition(pieces[i], scope.difficulty);
                         destinationPosition = calculateDimensionsService.getPiecePosition(i, scope.difficulty);
 
@@ -137,6 +137,30 @@
                             contextPuzzle.stroke();
                         }
                     }
+
+                    /*
+                     * Render the piece that is currently being dragged
+                     */
+                    if (angular.isNumber(selectedPiece)) {
+                        sourcePosition = calculateDimensionsService.getPiecePosition(gameService.getPieceByIndex(selectedPiece), scope.difficulty);
+
+                        contextPuzzle.drawImage(
+                            canvasPreview,
+                            sourcePosition.column * canvasProperties.pieceWidth,
+                            sourcePosition.row * canvasProperties.pieceHeight,
+                            canvasProperties.pieceWidth,
+                            canvasProperties.pieceHeight,
+                            cursorPosition.x - canvasProperties.pieceWidth / 2,
+                            cursorPosition.y - canvasProperties.pieceHeight / 2,
+                            canvasProperties.pieceWidth,
+                            canvasProperties.pieceHeight
+                        );
+
+                        /*
+                         * Add a black border
+                         */
+                        //Todo
+                    }
                 }
 
                 function drag (event) {
@@ -144,28 +168,37 @@
                 }
 
                 function drop (event) {
-                    //if selectedPiece check
                     PuzzleController.swapPieces(selectedPiece, getPieceIndex(event));
                     selectedPiece = null;
 
                     renderPuzzle();
                 }
 
-                function move () {
+                function move (mouseEvent) {
+                    if (!angular.isNumber(selectedPiece)) {
+                        return;
+                    }
 
+                    cursorPosition = getCursorPosition(mouseEvent);
+                    renderPuzzle();
+                }
+
+                function getCursorPosition (mouseEvent) {
+                    return {
+                        "x": mouseEvent.pageX - mouseEvent.target.getBoundingClientRect().left,
+                        "y": mouseEvent.pageY - mouseEvent.target.getBoundingClientRect().top
+                    };
                 }
 
                 function getPieceIndex (mouseEvent) {
-                    var positionX,
-                        positionY,
+                    var position,
                         column,
                         row;
 
-                    positionX = mouseEvent.pageX - mouseEvent.target.getBoundingClientRect().left;
-                    positionY = mouseEvent.pageY - mouseEvent.target.getBoundingClientRect().top;
+                    position = getCursorPosition(mouseEvent);
 
-                    column = Math.floor(positionX / canvasProperties.pieceWidth);
-                    row = Math.floor(positionY / canvasProperties.pieceHeight);
+                    column = Math.floor(position.x / canvasProperties.pieceWidth);
+                    row = Math.floor(position.y / canvasProperties.pieceHeight);
 
                     return row * difficultySettings[scope.difficulty].NUMBER_OF_COLUMNS + column;
                 }
