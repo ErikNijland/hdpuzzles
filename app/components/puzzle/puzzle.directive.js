@@ -51,23 +51,7 @@
         }
 
         function swapPieces (from, to) {
-            if (from === to) {
-                return;
-            }
-
             game.swapPieces(from, to);
-
-            if (game.hasMatchingPiece(to)) {
-                audio.playSoundEffect('SWAP_MATCH');
-            } else {
-                audio.playSoundEffect('SWAP_DEFAULT');
-            }
-
-            statistics.incrementMoves();
-            /*
-            Todo:
-            - check if puzzle is complete
-            */
         }
 
         return {

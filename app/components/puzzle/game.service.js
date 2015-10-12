@@ -5,9 +5,9 @@
         .module('hdpuzzles')
         .service('game', gameService);
 
-    gameService.$inject = ['difficultySettings', 'shuffle', 'statistics'];
+    gameService.$inject = ['difficultySettings', 'shuffle', 'statistics', 'audio'];
 
-    function gameService (difficultySettings, shuffleService, statistics) {
+    function gameService (difficultySettings, shuffleService, statistics, audio) {
         var difficulty,
             numberOfColumns,
             numberOfRows,
@@ -99,13 +99,30 @@
             }
         }
 
-        function swapPieces (a, b) {
-            var temp = pieces[a];
+        function swapPieces (from, to) {
+            var temp;
 
-            pieces[a] = pieces[b];
-            pieces[b] = temp;
+            if (from === to) {
+                return;
+            }
 
-            return getPieces();
+            temp = pieces[from];
+
+            pieces[from] = pieces[to];
+            pieces[to] = temp;
+
+            if (hasMatchingPiece(to)) {
+                audio.playSoundEffect('SWAP_MATCH');
+            } else {
+                audio.playSoundEffect('SWAP_DEFAULT');
+            }
+
+            statistics.incrementMoves();
+
+            /*
+             Todo:
+             - check if puzzle is complete
+             */
         }
     }
 })();
