@@ -142,7 +142,13 @@
                      * Render the piece that is currently being dragged
                      */
                     if (angular.isNumber(selectedPiece)) {
+                        var dragPositionX,
+                            dragPositionY;
+
                         sourcePosition = calculateDimensionsService.getPiecePosition(gameService.getPieceByIndex(selectedPiece), scope.difficulty);
+
+                        dragPositionX = cursorPosition.x - canvasProperties.pieceWidth / 2;
+                        dragPositionY = cursorPosition.y - canvasProperties.pieceHeight / 2;
 
                         contextPuzzle.drawImage(
                             canvasPreview,
@@ -150,8 +156,8 @@
                             sourcePosition.row * canvasProperties.pieceHeight,
                             canvasProperties.pieceWidth,
                             canvasProperties.pieceHeight,
-                            cursorPosition.x - canvasProperties.pieceWidth / 2,
-                            cursorPosition.y - canvasProperties.pieceHeight / 2,
+                            dragPositionX,
+                            dragPositionY,
                             canvasProperties.pieceWidth,
                             canvasProperties.pieceHeight
                         );
@@ -159,7 +165,7 @@
                         /*
                          * Add a black border
                          */
-                        //Todo
+                        contextPuzzle.strokeRect(dragPositionX, dragPositionY, canvasProperties.pieceWidth, canvasProperties.pieceHeight);
                     }
                 }
 
