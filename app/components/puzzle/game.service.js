@@ -46,6 +46,10 @@
         }
 
         function hasMatchingPiece (index, position) {
+            /*
+            Todo: when position isn't specified: check all directions
+            */
+
             switch (position) {
                 case 'right':
                     if (index % numberOfColumns === numberOfColumns - 1) {
@@ -68,11 +72,12 @@
         }
 
         function swapPieces (a, b) {
-            /*
-            Todo:
-            - swap the piece
-            - statistics.increment
-            */
+            var temp = pieces[a];
+
+            pieces[a] = pieces[b];
+            pieces[b] = temp;
+
+            return getPieces();
         }
     }
 })();

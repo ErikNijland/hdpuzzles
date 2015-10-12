@@ -19,9 +19,9 @@
         };
     }
 
-    PuzzleController.$inject = ['$routeParams', '$scope', '$timeout', 'api', 'game'];
+    PuzzleController.$inject = ['$routeParams', '$scope', '$timeout', 'api', 'game', 'statistics', 'audio'];
 
-    function PuzzleController ($routeParams, $scope, $timeout, api, game) {
+    function PuzzleController ($routeParams, $scope, $timeout, api, game, statistics, audio) {
         var puzzleId = $routeParams.id;
 
         $scope.state = 'LOADING';
@@ -50,12 +50,23 @@
             });
         }
 
-        function swapPieces (a, b) {
-            console.log('swap: ', a, b);
+        function swapPieces (from, to) {
+            if (from === to) {
+                return;
+            }
+
+            game.swapPieces(from, to);
+
+            if (game.hasMatchingPiece(to)) {
+                audio.playSoundEffect('SWAP_MATCH');
+            } else {
+                audio.playSoundEffect('SWAP_DEFAULT');
+            }
+
+            statistics.incrementMoves();
+
             /*
-            - Check if a !== b
-            - SWAP_DEFAULT OR SWAP_MATCH
-            - log statstics
+            Todo:
             - check if puzzle is complete
             */
         }
