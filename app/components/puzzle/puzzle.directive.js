@@ -60,7 +60,7 @@
             if (game.hasMatchingPiece(to)) {
                 audio.playSoundEffect('SWAP_MATCH');
             } else {
-                audio.playSoundEffect('SWAP_MATCH');
+                audio.playSoundEffect('SWAP_DEFAULT');
             }
 
             statistics.incrementMoves();

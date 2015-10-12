@@ -46,28 +46,51 @@
         }
 
         function hasMatchingPiece (index, position) {
-            /*
-            Todo: when position isn't specified: check all directions
-            */
-
             switch (position) {
                 case 'right':
-                    if (index % numberOfColumns === numberOfColumns - 1) {
-                        //Is this piece at the right edge of the board?
-                        return false;
-                    } else {
-                        return pieces[index] + 1 === pieces[index + 1];
-                    }
-
-                    break;
+                    return checkRight();
 
                 case 'bottom':
-                    if (index > numberOfColumns * (numberOfRows - 1)) {
-                        //Is this piece at the bottom?
-                        return false;
-                    } else {
-                        return pieces[index] + numberOfColumns === pieces[index + numberOfColumns];
-                    }
+                    return checkBottom();
+
+                default:
+                    return checkTop() || checkRight() || checkBottom() || checkLeft();
+            }
+
+            function checkTop () {
+                if (index < numberOfColumns) {
+                    //Is this piece at the top?
+                    return false;
+                } else {
+                    return pieces[index] - numberOfColumns === pieces[index - numberOfColumns];
+                }
+            }
+
+            function checkRight () {
+                if (index % numberOfColumns === numberOfColumns - 1) {
+                    //Is this piece at the right edge of the board?
+                    return false;
+                } else {
+                    return pieces[index] + 1 === pieces[index + 1];
+                }
+            }
+
+            function checkBottom () {
+                if (index > numberOfColumns * (numberOfRows - 1)) {
+                    //Is this piece at the bottom?
+                    return false;
+                } else {
+                    return pieces[index] + numberOfColumns === pieces[index + numberOfColumns];
+                }
+            }
+
+            function checkLeft () {
+                if (index % numberOfColumns === 0) {
+                    //Is this piece at the left edge of the board?
+                    return false;
+                } else {
+                    return pieces[index] - 1 === pieces[index - 1];
+                }
             }
         }
 
