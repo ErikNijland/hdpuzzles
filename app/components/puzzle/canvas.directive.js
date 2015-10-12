@@ -147,6 +147,8 @@
                     //if selectedPiece check
                     PuzzleController.swapPieces(selectedPiece, getPieceIndex(event));
                     selectedPiece = null;
+
+                    renderPuzzle();
                 }
 
                 function move () {

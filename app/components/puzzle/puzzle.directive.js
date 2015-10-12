@@ -60,11 +60,10 @@
             if (game.hasMatchingPiece(to)) {
                 audio.playSoundEffect('SWAP_MATCH');
             } else {
-                audio.playSoundEffect('SWAP_DEFAULT');
+                audio.playSoundEffect('SWAP_MATCH');
             }
 
             statistics.incrementMoves();
-
             /*
             Todo:
             - check if puzzle is complete
