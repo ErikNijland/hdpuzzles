@@ -47,8 +47,8 @@
                     };
 
                     angular.element(canvasPuzzle).on('mousedown', drag);
-                    angular.element(canvasPuzzle).on('mouseup', drop);
                     angular.element(canvasPuzzle).on('mousemove', move);
+                    angular.element(canvasPuzzle).on('mouseup', drop);
 
                     scope.$watch('state', function (newState) {
                         if (newState === 'PLAYING') {
@@ -131,16 +131,16 @@
                         if (!gameService.hasMatchingPiece(i, 'right')) {
                             contextPuzzle.beginPath();
 
-                            contextPuzzle.moveTo((piecePosition.column + 1) * canvasProperties.pieceWidth - 1, piecePosition.row * canvasProperties.pieceHeight);
-                            contextPuzzle.lineTo((piecePosition.column + 1) * canvasProperties.pieceWidth - 1, (piecePosition.row + 1) * canvasProperties.pieceHeight);
+                            contextPuzzle.moveTo((piecePosition.column + 1) * canvasProperties.pieceWidth, piecePosition.row * canvasProperties.pieceHeight);
+                            contextPuzzle.lineTo((piecePosition.column + 1) * canvasProperties.pieceWidth, (piecePosition.row + 1) * canvasProperties.pieceHeight);
 
                             contextPuzzle.stroke();
                         }
 
                         if (!gameService.hasMatchingPiece(i, 'bottom')) {
                             contextPuzzle.beginPath();
-                            contextPuzzle.moveTo(piecePosition.column * canvasProperties.pieceWidth, (piecePosition.row + 1) * canvasProperties.pieceHeight - 1);
-                            contextPuzzle.lineTo((piecePosition.column + 1) * canvasProperties.pieceWidth, (piecePosition.row + 1) * canvasProperties.pieceHeight - 1);
+                            contextPuzzle.moveTo(piecePosition.column * canvasProperties.pieceWidth, (piecePosition.row + 1) * canvasProperties.pieceHeight);
+                            contextPuzzle.lineTo((piecePosition.column + 1) * canvasProperties.pieceWidth, (piecePosition.row + 1) * canvasProperties.pieceHeight);
 
                             contextPuzzle.stroke();
                         }
@@ -151,9 +151,32 @@
                      */
                     if (angular.isNumber(selectedPiece)) {
                         var dragPositionX,
-                            dragPositionY;
+                            dragPositionY,
+                            targetPositionX,
+                            targetPositionY;
 
                         sourcePosition = calculateDimensionsService.getPiecePosition(gameService.getPieceByIndex(selectedPiece), scope.difficulty);
+
+                        /*
+                         * Render the piece at it's target location
+                         */
+                        targetPositionX = cursorPosition.column * canvasProperties.pieceWidth;
+                        targetPositionY = cursorPosition.row * canvasProperties.pieceHeight;
+
+                        contextPuzzle.drawImage(
+                            canvasPreview,
+                            sourcePosition.column * canvasProperties.pieceWidth,
+                            sourcePosition.row * canvasProperties.pieceHeight,
+                            canvasProperties.pieceWidth,
+                            canvasProperties.pieceHeight,
+                            targetPositionX,
+                            targetPositionY,
+                            canvasProperties.pieceWidth,
+                            canvasProperties.pieceHeight
+                        );
+
+                        //Add a black border around the target location
+                        contextPuzzle.strokeRect(targetPositionX, targetPositionY, canvasProperties.pieceWidth, canvasProperties.pieceHeight);
 
                         /*
                          * Render the dragged piece at the cursor location, the piece is centered around the cursor.
@@ -175,31 +198,29 @@
 
                         //Add a black border around the dragged piece
                         contextPuzzle.strokeRect(dragPositionX, dragPositionY, canvasProperties.pieceWidth, canvasProperties.pieceHeight);
-
-                        /*
-                         * Render the piece at it's target location
-                         */
-
                     }
                 }
 
                 function drag (event) {
                     selectedPiece = getPieceIndex(event);
+
+                    cursorPosition = getCursorPosition(event);
+                    renderPuzzle();
+                }
+
+                function move (event) {
+                    if (!angular.isNumber(selectedPiece)) {
+                        return;
+                    }
+
+                    cursorPosition = getCursorPosition(event);
+                    renderPuzzle();
                 }
 
                 function drop (event) {
                     PuzzleController.swapPieces(selectedPiece, getPieceIndex(event));
                     selectedPiece = null;
 
-                    renderPuzzle();
-                }
-
-                function move (mouseEvent) {
-                    if (!angular.isNumber(selectedPiece)) {
-                        return;
-                    }
-
-                    cursorPosition = getCursorPosition(mouseEvent);
                     renderPuzzle();
                 }
 
