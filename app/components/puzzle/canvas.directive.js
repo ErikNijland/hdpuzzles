@@ -118,7 +118,7 @@
                     contextPuzzle.globalAlpha = 1;
 
                     /*
-                     * Render black lines between non-matching puzzle pieces. The pieces aren't
+                     * Render black lines between non-matching puzzle pieces. Matching pieces aren't
                      * necessarily on the correct position.
                      */
                     contextPuzzle.lineWidth = 2;
@@ -147,7 +147,7 @@
                     }
 
                     /*
-                     * Render the piece that is currently being dragged
+                     * Render the piece that is currently being dragged twice
                      */
                     if (angular.isNumber(selectedPiece)) {
                         var dragPositionX,
@@ -173,10 +173,13 @@
                             canvasProperties.pieceHeight
                         );
 
-                        /*
-                         * Add a black border around the dragged piece
-                         */
+                        //Add a black border around the dragged piece
                         contextPuzzle.strokeRect(dragPositionX, dragPositionY, canvasProperties.pieceWidth, canvasProperties.pieceHeight);
+
+                        /*
+                         * Render the piece at it's target location
+                         */
+
                     }
                 }
 
@@ -201,23 +204,26 @@
                 }
 
                 function getCursorPosition (mouseEvent) {
+                    var positionX,
+                        positionY;
+
+                    positionX = mouseEvent.pageX - mouseEvent.target.getBoundingClientRect().left;
+                    positionY = mouseEvent.pageY - mouseEvent.target.getBoundingClientRect().top;
+
                     return {
-                        "x": mouseEvent.pageX - mouseEvent.target.getBoundingClientRect().left,
-                        "y": mouseEvent.pageY - mouseEvent.target.getBoundingClientRect().top
+                        "x": positionX,
+                        "y": positionY,
+                        "column": Math.floor(positionX / canvasProperties.pieceWidth),
+                        "row": Math.floor(positionY / canvasProperties.pieceHeight)
                     };
                 }
 
                 function getPieceIndex (mouseEvent) {
-                    var position,
-                        column,
-                        row;
+                    var position;
 
                     position = getCursorPosition(mouseEvent);
 
-                    column = Math.floor(position.x / canvasProperties.pieceWidth);
-                    row = Math.floor(position.y / canvasProperties.pieceHeight);
-
-                    return row * difficultySettings[scope.difficulty].NUMBER_OF_COLUMNS + column;
+                    return position.row * difficultySettings[scope.difficulty].NUMBER_OF_COLUMNS + position.column;
                 }
             }
         };
