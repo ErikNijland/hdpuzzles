@@ -89,12 +89,18 @@
                         return;
                     }
 
+                    //Start with a clear canvas
+                    contextPuzzle.clearRect(0, 0, canvasProperties.width, canvasProperties.height);
+
                     pieces = gameService.getPieces();
 
                     //Render all the individual pieces, use the preview as the image source
                     for (i = 0; i < pieces.length; i++) {
                         sourcePosition = calculateDimensionsService.getPiecePosition(pieces[i], scope.difficulty);
                         destinationPosition = calculateDimensionsService.getPiecePosition(i, scope.difficulty);
+
+                        //Make the piece grayed out on it's former position when it's being dragged around
+                        contextPuzzle.globalAlpha = i === selectedPiece ? 0.25 : 1;
 
                         contextPuzzle.drawImage(
                             canvasPreview,
@@ -108,6 +114,8 @@
                             canvasProperties.pieceHeight
                         );
                     }
+
+                    contextPuzzle.globalAlpha = 1;
 
                     /*
                      * Render black lines between non-matching puzzle pieces. The pieces aren't
@@ -147,6 +155,9 @@
 
                         sourcePosition = calculateDimensionsService.getPiecePosition(gameService.getPieceByIndex(selectedPiece), scope.difficulty);
 
+                        /*
+                         * Render the dragged piece at the cursor location, the piece is centered around the cursor.
+                         */
                         dragPositionX = cursorPosition.x - canvasProperties.pieceWidth / 2;
                         dragPositionY = cursorPosition.y - canvasProperties.pieceHeight / 2;
 
@@ -163,7 +174,7 @@
                         );
 
                         /*
-                         * Add a black border
+                         * Add a black border around the dragged piece
                          */
                         contextPuzzle.strokeRect(dragPositionX, dragPositionY, canvasProperties.pieceWidth, canvasProperties.pieceHeight);
                     }
