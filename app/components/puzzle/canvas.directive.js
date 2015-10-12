@@ -150,33 +150,37 @@
                      * Render the piece that is currently being dragged twice
                      */
                     if (angular.isNumber(selectedPiece)) {
-                        var dragPositionX,
+                        var startPosition,
+                            dragPositionX,
                             dragPositionY,
                             targetPositionX,
                             targetPositionY;
 
+                        startPosition = calculateDimensionsService.getPiecePosition(selectedPiece, scope.difficulty);
                         sourcePosition = calculateDimensionsService.getPiecePosition(gameService.getPieceByIndex(selectedPiece), scope.difficulty);
 
                         /*
-                         * Render the piece at it's target location
+                         * Render the piece at it's target location, except when it's equal to the start location
                          */
-                        targetPositionX = cursorPosition.column * canvasProperties.pieceWidth;
-                        targetPositionY = cursorPosition.row * canvasProperties.pieceHeight;
+                        if (startPosition.column !== cursorPosition.column || startPosition.row !== cursorPosition.row) {
+                            targetPositionX = cursorPosition.column * canvasProperties.pieceWidth;
+                            targetPositionY = cursorPosition.row * canvasProperties.pieceHeight;
 
-                        contextPuzzle.drawImage(
-                            canvasPreview,
-                            sourcePosition.column * canvasProperties.pieceWidth,
-                            sourcePosition.row * canvasProperties.pieceHeight,
-                            canvasProperties.pieceWidth,
-                            canvasProperties.pieceHeight,
-                            targetPositionX,
-                            targetPositionY,
-                            canvasProperties.pieceWidth,
-                            canvasProperties.pieceHeight
-                        );
+                            contextPuzzle.drawImage(
+                                canvasPreview,
+                                sourcePosition.column * canvasProperties.pieceWidth,
+                                sourcePosition.row * canvasProperties.pieceHeight,
+                                canvasProperties.pieceWidth,
+                                canvasProperties.pieceHeight,
+                                targetPositionX,
+                                targetPositionY,
+                                canvasProperties.pieceWidth,
+                                canvasProperties.pieceHeight
+                            );
 
-                        //Add a black border around the target location
-                        contextPuzzle.strokeRect(targetPositionX, targetPositionY, canvasProperties.pieceWidth, canvasProperties.pieceHeight);
+                            //Add a black border around the target location
+                            contextPuzzle.strokeRect(targetPositionX, targetPositionY, canvasProperties.pieceWidth, canvasProperties.pieceHeight);
+                        }
 
                         /*
                          * Render the dragged piece at the cursor location, the piece is centered around the cursor.
