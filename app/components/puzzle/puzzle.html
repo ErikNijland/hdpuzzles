@@ -10,6 +10,7 @@
     <hdpuzzles-canvas image="images/{{image}}" difficulty="{{difficulty}}" state="{{state}}" show-preview="showPreview"></hdpuzzles-canvas>
 
     <div ng-if="state === 'NEW'" class="puzzle__overlay" overlay>
+        <button ng-click="newGame('DEBUG')">Debug</button>
         <button ng-click="newGame('EASY')">Easy (24 pieces)</button>
         <button ng-click="newGame('MEDIUM')">Medium (54 pieces)</button>
         <button ng-click="newGame('HARD')">Hard (96 pieces)</button>

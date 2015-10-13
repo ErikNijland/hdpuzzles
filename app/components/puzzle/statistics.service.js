@@ -7,6 +7,7 @@
 
     function statisticsService () {
         var numberOfMoves = 0,
+            numberOfSeconds,
             startTime;
 
         return {
@@ -21,10 +22,7 @@
         }
 
         function stopTimer () {
-            return {
-                "number_of_moves": numberOfMoves,
-                "number_of_seconds": Math.round((new Date().getTime() - startTime) / 1000)
-            };
+            numberOfSeconds = Math.round((new Date().getTime() - startTime) / 1000);
         }
 
         function incrementMoves () {

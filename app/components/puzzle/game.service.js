@@ -11,6 +11,7 @@
         var difficulty,
             numberOfColumns,
             numberOfRows,
+            sortedPieces = [],
             pieces = [];
 
         return {
@@ -18,7 +19,8 @@
             "getPieces": getPieces,
             "getPieceByIndex": getPieceByIndex,
             "hasMatchingPiece": hasMatchingPiece,
-            "swapPieces": swapPieces
+            "swapPieces": swapPieces,
+            "isComplete": isComplete
         };
 
         function newGame (newDifficulty) {
@@ -34,10 +36,10 @@
             pieces.length = 0;
 
             for (i = 0; i < numberOfPieces; i++) {
-                pieces.push(i);
+                sortedPieces.push(i);
             }
 
-            pieces = shuffleService.shuffle(pieces);
+            pieces = shuffleService.shuffle(angular.copy(sortedPieces));
 
             statistics.startTimer();
         }
@@ -119,10 +121,13 @@
 
             statistics.incrementMoves();
 
-            /*
-             Todo:
-             - check if puzzle is complete
-             */
+            if (isComplete()) {
+                statistics.stopTimer();
+            }
+        }
+
+        function isComplete () {
+            return angular.equals(pieces, sortedPieces);
         }
     }
 })();
