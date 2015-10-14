@@ -2,6 +2,10 @@
     <h1 class="logo l-mb-10">HDpuzzles<span class="logo__dot-com">.com</span></h1>
 
     <ul class="thumbnails">
-        <li ng-repeat="puzzle in puzzles"><a ng-href="#/puzzles/{{puzzle.id}}"><img ng-src="images/thumbnails/{{puzzle.filename}}" alt=""></a></li>
+        <li ng-repeat="puzzle in puzzles">
+            <a ng-href="#/puzzles/{{puzzle.id}}">
+                <thumbnail image-src="images/thumbnails/{{puzzle.filename}}"></thumbnail>
+            </a>
+        </li>
     </ul>
 </div>
