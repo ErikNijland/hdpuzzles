@@ -35,7 +35,7 @@
             pieces.length = 0;
 
             for (i = 0; i < numberOfPieces; i++) {
-                sortedPieces.push(i);
+                pieces.push(i);
             }
 
             pieces = shuffleService.shuffle(pieces);
@@ -121,6 +121,8 @@
             statistics.incrementMoves();
 
             if (isComplete()) {
+                audio.playSoundEffect('PUZZLE_COMPLETE');
+
                 statistics.stopTimer();
             }
         }

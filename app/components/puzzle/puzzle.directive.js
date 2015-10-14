@@ -19,9 +19,9 @@
         };
     }
 
-    PuzzleController.$inject = ['$routeParams', '$scope', '$timeout', 'api', 'game', 'statistics', 'audio'];
+    PuzzleController.$inject = ['$routeParams', '$scope', '$timeout', 'api', 'game', 'statistics'];
 
-    function PuzzleController ($routeParams, $scope, $timeout, api, game, statistics, audio) {
+    function PuzzleController ($routeParams, $scope, $timeout, api, game, statistics) {
         var puzzleId = $routeParams.id;
 
         $scope.state = 'LOADING';
@@ -52,6 +52,12 @@
 
         function swapPieces (from, to) {
             game.swapPieces(from, to);
+            console.log(game.isComplete());
+            if (game.isComplete()) {
+                $scope.state = 'PUZZLE_COMPLETE';
+                $scope.statistics = statistics.getStatistics();
+                $scope.$digest();
+            }
         }
 
         return {

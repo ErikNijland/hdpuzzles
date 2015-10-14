@@ -6,7 +6,7 @@
             <img width="120" height="60" ng-src="images/thumbnails/{{image}}" alt="">
         </div>
     </div>
-
+    {{state}}
     <hdpuzzles-canvas image="images/{{image}}" difficulty="{{difficulty}}" state="{{state}}" show-preview="showPreview"></hdpuzzles-canvas>
 
     <div ng-if="state === 'NEW'" class="puzzle__overlay" overlay>

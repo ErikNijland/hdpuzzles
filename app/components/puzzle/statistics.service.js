@@ -13,7 +13,8 @@
         return {
             "startTimer": startTimer,
             "stopTimer": stopTimer,
-            "incrementMoves": incrementMoves
+            "incrementMoves": incrementMoves,
+            "getStatistics": getStatistics
         };
 
         function startTimer () {
@@ -27,6 +28,13 @@
 
         function incrementMoves () {
             return ++numberOfMoves;
+        }
+
+        function getStatistics () {
+            return {
+                "numberOfMoves": numberOfMoves,
+                "numberOfSeconds": numberOfSeconds
+            };
         }
     }
 })();
