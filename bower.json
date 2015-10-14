@@ -1,9 +1,0 @@
-{
-  "name": "hdpuzzles",
-  "version": "0.0.1",
-  "homepage": "https://github.com/ErikNijland/hdpuzzles",
-  "dependencies": {
-    "angular": "angularjs#~1.4.6",
-    "angular-route": "~1.4.6"
-  }
-}

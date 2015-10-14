@@ -1,7 +1,6 @@
 .idea
 node_modules
 temp
-public/bower_components
 public/*.css
 public/*.js
 public/*.map
