@@ -5,16 +5,18 @@
         .module('hdpuzzles')
         .service('api', apiService);
 
-    apiService.$inject = ['$q', '$http'];
+    apiService.$inject = ['$http', 'shuffle'];
 
-    function apiService ($q, $http) {
+    function apiService ($http, shuffleService) {
         return {
             "query": query,
             "get": get
         };
 
         function query () {
-            return getPuzzles();
+            return getPuzzles().then(function (response) {
+                return shuffleService.shuffle(response.data);
+            });
         }
 
         function get (id) {
