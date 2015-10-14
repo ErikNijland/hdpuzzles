@@ -18,17 +18,11 @@
         }
 
         function get (id) {
-            var q = $q.defer();
-
-            getPuzzles().then(function (response) {
-                var puzzle = response.data.filter(function (puzzle) {
+            return getPuzzles().then(function (response) {
+                return response.data.filter(function (puzzle) {
                     return puzzle.id === id;
-                });
-
-                q.resolve(puzzle[0]);
+                })[0];
             });
-
-            return q.promise;
         }
 
         function getPuzzles () {
