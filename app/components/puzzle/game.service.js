@@ -11,7 +11,6 @@
         var difficulty,
             numberOfColumns,
             numberOfRows,
-            sortedPieces = [],
             pieces = [];
 
         return {
@@ -39,7 +38,7 @@
                 sortedPieces.push(i);
             }
 
-            pieces = shuffleService.shuffle(angular.copy(sortedPieces));
+            pieces = shuffleService.shuffle(pieces);
 
             statistics.startTimer();
         }
@@ -127,6 +126,11 @@
         }
 
         function isComplete () {
+            var sortedPieces;
+
+            sortedPieces = angular.copy(pieces);
+            sortedPieces.sort();
+
             return angular.equals(pieces, sortedPieces);
         }
     }
