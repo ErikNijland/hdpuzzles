@@ -15,5 +15,11 @@
         <button ng-click="newGame('MEDIUM')">Medium (54 pieces)</button>
         <button ng-click="newGame('HARD')">Hard (96 pieces)</button>
     </div>
+
+
+    <div ng-if="state === 'PUZZLE_COMPLETE'" class="puzzle__overlay" overlay>
+        Number of moves {{statistics.numberOfMoves}}<br>
+        Time played {{statistics.numberOfSeconds | minutesFormatter}}
+    </div>
 </div>
 
