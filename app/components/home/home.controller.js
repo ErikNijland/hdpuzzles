@@ -9,7 +9,7 @@
 
     function HomeController ($scope, api) {
         api.query().then(function (puzzles) {
-            $scope.puzzles = puzzles;
+            $scope.puzzles = puzzles.data;
         });
     }
 })();

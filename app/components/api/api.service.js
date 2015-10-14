@@ -14,27 +14,25 @@
         };
 
         function query () {
-            getPuzzles();
-
-            var d = $q.defer();
-
-            d.resolve();
-
-            return d.promise;
+            return getPuzzles();
         }
 
         function get (id) {
-            var d = $q.defer();
+            var q = $q.defer();
 
-            d.resolve();
+            getPuzzles().then(function (response) {
+                var puzzle = response.data.filter(function (puzzle) {
+                    return puzzle.id === id;
+                });
 
-            return d.promise;
+                q.resolve(puzzle[0]);
+            });
+
+            return q.promise;
         }
 
         function getPuzzles () {
-            $http.get('puzzles.json').then(function (data) {
-                console.log(data);
-            });
+            return $http.get('puzzles.json');
         }
     }
 })();

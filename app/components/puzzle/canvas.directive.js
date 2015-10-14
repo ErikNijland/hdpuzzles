@@ -36,7 +36,7 @@
                     canvasPuzzle = $document[0].querySelector('.js-canvas-puzzle');
                     contextPreview = canvasPreview.getContext('2d');
                     contextPuzzle =  canvasPuzzle.getContext('2d');
-
+console.log(scope.image);
                     image = new $window.Image();
                     image.src = scope.image;
                     image.onload = function () {
