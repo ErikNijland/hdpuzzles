@@ -14,9 +14,7 @@
             },
             templateUrl: 'lazy-loading/thumbnail.html',
             link: function (scope, element) {
-                var transparantPixel = 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7';
-
-                scope.lazyLoadingSrc = transparantPixel;
+                scope.lazyLoadingSrc = 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7';
 
                 $timeout(checkImage);
 
