@@ -25,7 +25,6 @@
             $scope.state = 'NEW';
 
             $scope.image = puzzle.filename;
-            console.log($scope.image);
             $scope.showPreview = true;
 
             $scope.newGame = newGame;
@@ -45,7 +44,6 @@
         }
 
         function swapPieces (from, to) {
-            console.log('swapPieces');
             game.swapPieces(from, to);
 
             if (game.isComplete()) {
