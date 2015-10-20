@@ -45,6 +45,7 @@
         }
 
         function swapPieces (from, to) {
+            console.log('swapPieces');
             game.swapPieces(from, to);
 
             if (game.isComplete()) {

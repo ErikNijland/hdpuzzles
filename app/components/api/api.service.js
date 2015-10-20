@@ -10,7 +10,8 @@
     function apiService ($http, shuffleService) {
         return {
             "query": query,
-            "get": get
+            "get": get,
+            "random": random
         };
 
         function query () {
@@ -24,6 +25,12 @@
                 return response.data.filter(function (puzzle) {
                     return puzzle.id === id;
                 })[0];
+            });
+        }
+
+        function random () {
+            return query().then(function (puzzles) {
+                return puzzles[0];
             });
         }
 
