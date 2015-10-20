@@ -62,7 +62,6 @@
         }
 
         function togglePreview (event) {
-            console.log('togglePreview');
             if (event.keyCode !== 32) {
                 //32 = spacebar
                 return;
