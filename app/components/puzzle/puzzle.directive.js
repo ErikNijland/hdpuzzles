@@ -12,9 +12,9 @@
         };
     }
 
-    PuzzleController.$inject = ['$routeParams', '$scope', '$timeout', 'api', 'game', 'statistics'];
+    PuzzleController.$inject = ['$routeParams', '$scope', '$timeout', '$window', '$document', 'api', 'game', 'statistics'];
 
-    function PuzzleController ($routeParams, $scope, $timeout, api, game, statistics) {
+    function PuzzleController ($routeParams, $scope, $timeout, $window, $document, api, game, statistics) {
         var puzzleId = $routeParams.id;
 
         $scope.state = 'LOADING';
@@ -28,6 +28,14 @@
             $scope.showPreview = true;
 
             $scope.newGame = newGame;
+
+            angular.element($document).on('keydown', togglePreview);
+            angular.element($document).on('keyup', togglePreview);
+
+            $scope.$on('$destroy', function () {
+                angular.element($document).off('keydown', togglePreview);
+                angular.element($document).off('keyup', togglePreview);
+            });
         }
 
         function newGame (difficulty) {
@@ -51,6 +59,17 @@
                 $scope.statistics = statistics.getStatistics();
                 $scope.$digest();
             }
+        }
+
+        function togglePreview (event) {
+            console.log('togglePreview');
+            if (event.keyCode !== 32) {
+                //32 = spacebar
+                return;
+            }
+
+            $scope.showPreview = $scope.state === 'PLAYING' && event.type === 'keydown';
+            $scope.$digest();
         }
 
         return {
