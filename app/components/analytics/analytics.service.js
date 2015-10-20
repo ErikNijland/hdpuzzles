@@ -5,9 +5,9 @@
         .module('hdpuzzles')
         .service('analytics', analyticsService);
 
-    analyticsService.$inject = ['$window', '$document'];
+    analyticsService.$inject = ['$window', '$location'];
 
-    function analyticsService ($window, $document) {
+    function analyticsService ($window, $location) {
         return {
             "initialize": initialize,
             "trackPageview": trackPageview,
@@ -27,7 +27,9 @@
 
         function trackPageview () {
             console.log('trackPageview');
-            $window.ga('send', 'pageview');
+            $window.ga('send', 'pageview', {
+                "page": $location.url()
+            });
         }
 
         function trackEvent (category, action, label, value) {
