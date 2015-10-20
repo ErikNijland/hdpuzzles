@@ -2,8 +2,8 @@
     <div class="puzzle__header">
         <div class="logo"><a ng-href="#/">HDpuzzles<span class="logo__dot-com">.com</span></a></div>
 
-        <div class="preview">
-            <img width="120" height="60" ng-src="images/thumbnails/{{image}}" alt="">
+        <div ng-show="state === 'PLAYING'" class="preview">
+            <img width="120" height="60" ng-src="images/thumbnails/{{image}}" alt="Preview" ng-mouseover="showPreview = true;" ng-mouseleave="showPreview = false;">
         </div>
     </div>
 
