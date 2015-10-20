@@ -1,0 +1,3 @@
+@mixin cursor ($name) {
+    cursor:url('images/cursors/#{$name}.png'), url('images/cursors/#{$name}.cur'), auto;
+}

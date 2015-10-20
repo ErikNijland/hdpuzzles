@@ -25,9 +25,11 @@ body {
     .puzzle__canvas {
         height:calc(100% - 80px);
         background-color:$black;
+        @include cursor('Arrow');
 
         canvas {
-            position:relative;
+            position: relative;
+            @include cursor('Hand');
         }
     }
 
