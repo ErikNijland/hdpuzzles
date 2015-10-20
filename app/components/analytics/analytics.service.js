@@ -26,14 +26,12 @@
         }
 
         function trackPageview () {
-            console.log('trackPageview');
             $window.ga('send', 'pageview', {
                 "page": $location.url()
             });
         }
 
         function trackEvent (category, action, label, value) {
-            console.log('trackEvent');
             $window.ga('send', 'event', category, action, label, value);
         }
     }

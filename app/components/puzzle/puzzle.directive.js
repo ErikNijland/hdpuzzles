@@ -44,7 +44,7 @@
             $scope.difficulty = difficulty;
             $scope.showPreview = false;
 
-            game.newGame(difficulty);
+            game.newGame(puzzleId, difficulty);
 
             $timeout(function () {
                 $scope.$digest();

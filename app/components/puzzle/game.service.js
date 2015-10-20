@@ -5,10 +5,11 @@
         .module('hdpuzzles')
         .service('game', gameService);
 
-    gameService.$inject = ['difficultySettings', 'shuffle', 'statistics', 'audio'];
+    gameService.$inject = ['difficultySettings', 'shuffle', 'statistics', 'audio', 'analytics'];
 
-    function gameService (difficultySettings, shuffleService, statistics, audio) {
-        var difficulty,
+    function gameService (difficultySettings, shuffleService, statistics, audio, analytics) {
+        var puzzleId,
+            difficulty,
             numberOfColumns,
             numberOfRows,
             pieces = [];
@@ -22,10 +23,11 @@
             "isComplete": isComplete
         };
 
-        function newGame (newDifficulty) {
+        function newGame (newPuzzleId, newDifficulty) {
             var numberOfPieces,
                 i;
 
+            puzzleId = newPuzzleId;
             difficulty = newDifficulty;
             numberOfColumns = difficultySettings[difficulty].NUMBER_OF_COLUMNS;
             numberOfRows = difficultySettings[difficulty].NUMBER_OF_ROWS;
@@ -41,6 +43,7 @@
             pieces = shuffleService.shuffle(pieces);
 
             statistics.startTimer();
+            analytics.trackEvent('Puzzle game', 'Start', difficulty, puzzleId);
         }
 
         function getPieces () {
@@ -124,6 +127,7 @@
                 audio.playSoundEffect('PUZZLE_COMPLETE');
 
                 statistics.stopTimer();
+                analytics.trackEvent('Puzzle game', 'Finish', difficulty, puzzleId);
             }
         }
 
