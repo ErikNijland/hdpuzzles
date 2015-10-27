@@ -48,9 +48,9 @@
                         angular.element($window).on('resize', setupCanvas);
                     };
 
-                    angular.element(canvasPuzzle).on('mousedown', drag);
-                    angular.element(body).on('mousemove', move);
-                    angular.element(body).on('mouseup', drop);
+                    angular.element(canvasPuzzle).on('mousedown touchstart', drag);
+                    angular.element(body).on('mousemove touchmove', move);
+                    angular.element(body).on('mouseup touchend', drop);
 
                     scope.$watch('state', function (newState) {
                         if (newState === 'PLAYING') {
@@ -239,7 +239,7 @@
                     scope.isDragging = false;
                     scope.$digest();
 
-                    if (event.toElement === canvasPuzzle) {
+                    if (event.target === canvasPuzzle) {
                         PuzzleController.swapPieces(selectedPiece, getPieceIndex(event));
                     }
 
@@ -247,12 +247,19 @@
                     renderPuzzle();
                 }
 
-                function getCursorPosition (mouseEvent) {
-                    var positionX,
+                function getCursorPosition (rawEvent) {
+                    var event,
+                        positionX,
                         positionY;
 
-                    positionX = mouseEvent.pageX - mouseEvent.target.getBoundingClientRect().left;
-                    positionY = mouseEvent.pageY - mouseEvent.target.getBoundingClientRect().top;
+                    if (rawEvent.type === 'mousedown' || rawEvent.type === 'mousemove' || rawEvent.type === 'mouseup') {
+                        event = rawEvent;
+                    } else {
+                        event = rawEvent.changedTouches[0];
+                    }
+
+                    positionX = event.pageX - event.target.getBoundingClientRect().left;
+                    positionY = event.pageY - event.target.getBoundingClientRect().top;
 
                     return {
                         "x": positionX,
@@ -262,10 +269,10 @@
                     };
                 }
 
-                function getPieceIndex (mouseEvent) {
+                function getPieceIndex (event) {
                     var position;
 
-                    position = getCursorPosition(mouseEvent);
+                    position = getCursorPosition(event);
 
                     return position.row * difficultySettings[scope.difficulty].NUMBER_OF_COLUMNS + position.column;
                 }
