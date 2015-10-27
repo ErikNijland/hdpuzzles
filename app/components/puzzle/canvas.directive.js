@@ -18,7 +18,8 @@
             },
             templateUrl: 'puzzle/puzzle-canvas.html',
             link: function (scope, element, attrs, PuzzleController) {
-                var image,
+                var body,
+                    image,
                     canvasElements,
                     canvasProperties,
                     canvasPreview,
@@ -31,6 +32,7 @@
                 initialize();
 
                 function initialize () {
+                    body = $document[0].querySelector('body');
                     canvasElements = element.find('canvas');
                     canvasPreview = $document[0].querySelector('.js-canvas-preview');
                     canvasPuzzle = $document[0].querySelector('.js-canvas-puzzle');
@@ -47,8 +49,8 @@
                     };
 
                     angular.element(canvasPuzzle).on('mousedown', drag);
-                    angular.element(canvasPuzzle).on('mousemove', move);
-                    angular.element(canvasPuzzle).on('mouseup', drop);
+                    angular.element(body).on('mousemove', move);
+                    angular.element(body).on('mouseup', drop);
 
                     scope.$watch('state', function (newState) {
                         if (newState === 'PLAYING') {
@@ -206,6 +208,10 @@
                 }
 
                 function drag (event) {
+                    if (scope.state !== 'PLAYING') {
+                        return;
+                    }
+
                     scope.isDragging = true;
                     scope.$digest();
 
@@ -221,16 +227,23 @@
                     }
 
                     cursorPosition = getCursorPosition(event);
+
                     renderPuzzle();
                 }
 
                 function drop (event) {
+                    if (!angular.isNumber(selectedPiece)) {
+                        return;
+                    }
+
                     scope.isDragging = false;
                     scope.$digest();
 
-                    PuzzleController.swapPieces(selectedPiece, getPieceIndex(event));
-                    selectedPiece = null;
+                    if (event.toElement === canvasPuzzle) {
+                        PuzzleController.swapPieces(selectedPiece, getPieceIndex(event));
+                    }
 
+                    selectedPiece = null;
                     renderPuzzle();
                 }
 

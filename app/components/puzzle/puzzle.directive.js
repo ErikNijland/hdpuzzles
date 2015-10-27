@@ -39,9 +39,8 @@
         }
 
         function newGame (difficulty) {
-            $scope.state = 'PLAYING';
-
             $scope.difficulty = difficulty;
+            $scope.state = 'PLAYING';
             $scope.showPreview = false;
 
             game.newGame(puzzleId, difficulty);
