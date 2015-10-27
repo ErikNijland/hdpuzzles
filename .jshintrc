@@ -12,6 +12,6 @@
   },
   "latedef": "nofunc",
   "strict": true,
-  "undef": true//,
-  //"unused": true
+  "undef": true,
+  "unused": true
 }
