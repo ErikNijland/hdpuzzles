@@ -206,6 +206,9 @@
                 }
 
                 function drag (event) {
+                    scope.isDragging = true;
+                    scope.$digest();
+
                     selectedPiece = getPieceIndex(event);
 
                     cursorPosition = getCursorPosition(event);
@@ -222,6 +225,9 @@
                 }
 
                 function drop (event) {
+                    scope.isDragging = false;
+                    scope.$digest();
+
                     PuzzleController.swapPieces(selectedPiece, getPieceIndex(event));
                     selectedPiece = null;
 

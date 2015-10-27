@@ -31,6 +31,14 @@ body {
             position: relative;
             @include cursor('Hand');
         }
+
+        &.is-dragging {
+            @include cursor('NO');
+
+            canvas {
+                @include cursor('SizeAll_Down');
+            }
+        }
     }
 
     .puzzle__overlay {

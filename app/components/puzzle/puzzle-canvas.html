@@ -1,4 +1,7 @@
-<div class="puzzle__canvas">
+<div class="puzzle__canvas" ng-class="{
+    'is-dragging': isDragging
+    }">
+    1{{isDragging}}a
     <canvas ng-show="showPreview" class="js-canvas-preview"></canvas>
     <canvas ng-show="!showPreview" class="js-canvas-puzzle"></canvas>
 </div>
