@@ -5,11 +5,11 @@
         <audio-settings></audio-settings>
 
         <div ng-show="state === 'PLAYING'" class="preview">
-            <img width="120" height="60" ng-src="images/thumbnails/{{image}}" alt="Preview" ng-mouseover="showPreview = true;" ng-mouseleave="showPreview = false;">
+            <img width="120" height="60" ng-src="{{thumbnail}}" alt="Preview" ng-mouseover="showPreview = true;" ng-mouseleave="showPreview = false;">
         </div>
     </div>
 
-    <hdpuzzles-canvas ng-if="state !== 'LOADING'" image="images/{{image}}" difficulty="{{difficulty}}" state="{{state}}" show-preview="showPreview"></hdpuzzles-canvas>
+    <hdpuzzles-canvas ng-if="state !== 'LOADING'" image="{{image}}" difficulty="{{difficulty}}" state="{{state}}" show-preview="showPreview"></hdpuzzles-canvas>
 
     <div ng-if="state === 'NEW'" class="puzzle__overlay" overlay>
         <button ng-click="newGame('DEBUG')">Debug</button>
