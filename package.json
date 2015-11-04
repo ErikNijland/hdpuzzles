@@ -8,6 +8,10 @@
   "bugs": {
     "url": "https://github.com/ErikNijland/hdpuzzles/issues"
   },
+  "scripts": {
+    "postinstall": "grunt build",
+    "start": "node server.js"
+  },
   "devDependencies": {
     "bower": "^1.5.3",
     "grunt-angular-templates": "^0.5.7",
