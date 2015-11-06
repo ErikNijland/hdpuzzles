@@ -16,14 +16,20 @@
         };
 
         function preload () {
+            /*
+            What is this preload trickery?
+            ==============================
+            iOS 9.1 doesn't allow media playback on touchend events (dropping a puzzle piece) unless it has been played
+            before. This is done to prevent aggressive ads/spam.
 
+            This might be fixed in a future update though: http://trac.webkit.org/changeset/190327
+            */
             angular.forEach(soundEffects, function (filename, name) {
                 audio[name] = new $window.Audio();
                 audio[name].src = filename;
-                audio.volume = 0;
+
                 audio[name].play();
                 audio[name].pause();
-                audio.volume = 1;
             });
         }
 
@@ -31,7 +37,7 @@
             if (!settings.get('ENABLE_SOUND_EFFECTS')) {
                 return;
             }
-            console.log(audio, name);
+
             audio[name].play();
         }
     }
