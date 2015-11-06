@@ -17,10 +17,10 @@
 
         function preload () {
 
-            angular.forEach(soundEffects, function (name) {
+            angular.forEach(soundEffects, function (filename, name) {
                 audio[name] = new $window.Audio();
-                audio.src = 'audio/swap_default.mp3';
-                audio.play();
+                audio[name].src = filename;
+                audio[name].play();
             });
         }
 
@@ -28,7 +28,7 @@
             if (!settings.get('ENABLE_SOUND_EFFECTS')) {
                 return;
             }
-
+            console.log(audio, name);
             audio[name].play();
         }
     }
