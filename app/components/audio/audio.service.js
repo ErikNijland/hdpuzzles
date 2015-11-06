@@ -17,21 +17,18 @@
 
         function preload () {
             audio = new $window.Audio();
-
-            angular.forEach(soundEffects, function (filename) {
-                audio.src = filename;
-                audio.play();
-            });
+            audio.src = 'audio/swap_default.mp3';
+            audio.play();
         }
 
-        function playSoundEffect (name) {
+        function playSoundEffect () {
             if (!settings.get('ENABLE_SOUND_EFFECTS')) {
                 return;
             }
 
-            var audio = new $window.Audio();
-            alert(audio.muted);
-            audio.src = soundEffects[name];
+            //var audio = new $window.Audio();
+            //alert(audio.muted);
+            //audio.src = soundEffects[name];
             audio.play();
         }
     }
