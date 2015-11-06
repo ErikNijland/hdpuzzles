@@ -77,7 +77,10 @@
 
             function checkRight () {
                 if (index % numberOfColumns === numberOfColumns - 1) {
-                    //Is this piece at the right edge of the board?
+                    //Is this piece currently at the right edge of the board?
+                    return false;
+                } else if (pieces[index] % numberOfColumns === numberOfColumns - 1) {
+                    //Does the piece belong at the right edge of the board, but isn't?
                     return false;
                 } else {
                     return pieces[index] + 1 === pieces[index + 1];
@@ -96,6 +99,9 @@
             function checkLeft () {
                 if (index % numberOfColumns === 0) {
                     //Is this piece at the left edge of the board?
+                    return false;
+                } else if (pieces[index] % numberOfColumns === 0) {
+                    //Does the piece belong at the left edge of the board, but isn't?
                     return false;
                 } else {
                     return pieces[index] - 1 === pieces[index - 1];
