@@ -8,14 +8,17 @@
     audioService.$inject = ['$window', 'soundEffects', 'settings'];
 
     function audioService ($window, soundEffects, settings) {
+        var audio;
+
         return {
             "preload": preload,
             "playSoundEffect": playSoundEffect
         };
 
         function preload () {
+            audio = new $window.Audio();
+
             angular.forEach(soundEffects, function (filename) {
-                var audio = new $window.Audio();
                 audio.src = filename;
                 audio.play();
             });

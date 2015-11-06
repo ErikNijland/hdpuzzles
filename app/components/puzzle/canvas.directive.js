@@ -215,7 +215,7 @@
                     }
 
                     //Prevent scrolling on tablets
-                    //event.preventDefault();
+                    event.preventDefault();
 
                     scope.isDragging = true;
                     scope.$digest();
