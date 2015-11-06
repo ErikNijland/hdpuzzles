@@ -212,6 +212,9 @@
                         return;
                     }
 
+                    //Prevent scrolling on tablets
+                    event.preventDefault();
+
                     scope.isDragging = true;
                     scope.$digest();
 
