@@ -8,8 +8,6 @@
     audioService.$inject = ['$window', 'soundEffects', 'settings'];
 
     function audioService ($window, soundEffects, settings) {
-        preload();
-
         return {
             "preload": preload,
             "playSoundEffect": playSoundEffect

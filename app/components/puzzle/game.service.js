@@ -42,6 +42,7 @@
 
             pieces = shuffleService.shuffle(pieces);
 
+            audio.preload();
             statistics.startTimer();
             analytics.trackEvent('Puzzle game', 'Start', difficulty, puzzleId);
         }
