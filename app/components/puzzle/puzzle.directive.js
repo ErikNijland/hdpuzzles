@@ -44,6 +44,10 @@
             $scope.state = 'PLAYING';
             $scope.showPreview = false;
 
+            $scope.togglePreview = function () {
+                $scope.showPreview = !$scope.showPreview;
+            };
+
             game.newGame(puzzleId, difficulty);
 
             $timeout(function () {
@@ -71,8 +75,14 @@
             $scope.$digest();
         }
 
+        function hidePreview () {
+            $scope.showPreview = false;
+            $scope.$digest();
+        }
+
         return {
-            "swapPieces": swapPieces
+            "swapPieces": swapPieces,
+            "hidePreview": hidePreview
         };
     }
 })();

@@ -52,6 +52,8 @@
                     angular.element(body).on('mousemove touchmove', move);
                     angular.element(body).on('mouseup touchend', drop);
 
+                    angular.element(canvasPreview).on('click', PuzzleController.hidePreview);
+
                     scope.$watch('state', function (newState) {
                         if (newState === 'PLAYING') {
                             setupCanvas();

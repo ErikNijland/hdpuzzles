@@ -5,7 +5,7 @@
         <audio-settings></audio-settings>
 
         <div ng-show="state === 'PLAYING'" class="preview">
-            <img width="120" height="60" ng-src="{{thumbnail}}" alt="Preview" ng-mouseover="showPreview = true;" ng-mouseleave="showPreview = false;">
+            <img width="120" height="60" ng-src="{{thumbnail}}" alt="Preview" ng-click="togglePreview();">
         </div>
     </div>
 
