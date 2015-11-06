@@ -17,6 +17,7 @@
             angular.forEach(soundEffects, function (filename) {
                 var audio = new $window.Audio();
                 audio.src = filename;
+                audio.play();
             });
         }
 
