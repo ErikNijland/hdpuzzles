@@ -27,6 +27,7 @@
             }
 
             var audio = new $window.Audio();
+            console.log(audio.muted);
             audio.src = soundEffects[name];
             audio.play();
         }
