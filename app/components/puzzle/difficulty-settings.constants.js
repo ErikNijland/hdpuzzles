@@ -5,7 +5,7 @@
         .module('hdpuzzles')
         .constant('difficultySettings', {
             "DEBUG": {
-                "NUMBER_OF_COLUMNS": 2,
+                "NUMBER_OF_COLUMNS": 3,
                 "NUMBER_OF_ROWS": 2
             },
             "EASY": {
