@@ -50,7 +50,8 @@
 
                     angular.element(canvasPuzzle).on('mousedown touchstart', drag);
                     angular.element(body).on('mousemove touchmove', move);
-                    angular.element(body).on('mouseup touchend', drop);
+                    angular.element(body).on('mouseup', drop);
+                    angular.element(body).on('touchend', drop);
 
                     angular.element(canvasPreview).on('click', PuzzleController.hidePreview);
 
