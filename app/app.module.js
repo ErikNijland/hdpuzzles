@@ -1,5 +1,7 @@
 (function () {
     'use strict';
 
-    angular.module('hdpuzzles', ['ngRoute']);
+    angular.module('hdpuzzles', [
+        'ngRoute',
+        'ngAnimate']);
 })();

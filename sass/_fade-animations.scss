@@ -1,0 +1,40 @@
+.fade.ng-hide-add {
+    animation-name: keyFrameLeave;
+    animation-duration: 400ms;
+    animation-timing-function: ease;
+}
+
+.fade.ng-hide-remove {
+    animation-name: keyFrameEnter;
+    animation-duration: 400ms;
+    animation-timing-function: ease;
+}
+
+@keyframes keyFrameEnter {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes keyFrameLeave {
+    0% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
+    }
+}
+@keyframes keyFrameLeave {
+    0% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
+    }
+}
