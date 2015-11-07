@@ -1,0 +1,13 @@
+.button {
+    background-color:$red;
+    color:$white;
+    font-family:'Dosis', sans-serif;
+    font-size:24px;
+    cursor:pointer;
+    padding:5px 15px;
+    border-radius:2px;
+
+    &.button--small {
+        font-size:16px;
+    }
+}
