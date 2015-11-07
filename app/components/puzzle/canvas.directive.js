@@ -189,20 +189,22 @@
                         /*
                          * Render the dragged piece at the cursor location, the piece is centered around the cursor.
                          */
-                        dragPositionX = cursorPosition.x - canvasProperties.pieceWidth / 2;
-                        dragPositionY = cursorPosition.y - canvasProperties.pieceHeight / 2;
+                        if (angular.isObject(cursorPosition)) {
+                            dragPositionX = cursorPosition.x - canvasProperties.pieceWidth / 2;
+                            dragPositionY = cursorPosition.y - canvasProperties.pieceHeight / 2;
 
-                        contextPuzzle.drawImage(
-                            canvasPreview,
-                            sourcePosition.column * canvasProperties.pieceWidth,
-                            sourcePosition.row * canvasProperties.pieceHeight,
-                            canvasProperties.pieceWidth,
-                            canvasProperties.pieceHeight,
-                            dragPositionX,
-                            dragPositionY,
-                            canvasProperties.pieceWidth,
-                            canvasProperties.pieceHeight
-                        );
+                            contextPuzzle.drawImage(
+                                canvasPreview,
+                                sourcePosition.column * canvasProperties.pieceWidth,
+                                sourcePosition.row * canvasProperties.pieceHeight,
+                                canvasProperties.pieceWidth,
+                                canvasProperties.pieceHeight,
+                                dragPositionX,
+                                dragPositionY,
+                                canvasProperties.pieceWidth,
+                                canvasProperties.pieceHeight
+                            );
+                        }
 
                         //Add a black border around the dragged piece
                         contextPuzzle.strokeRect(dragPositionX, dragPositionY, canvasProperties.pieceWidth, canvasProperties.pieceHeight);
@@ -261,6 +263,10 @@
                         event = rawEvent;
                     } else {
                         event = rawEvent.changedTouches[0];
+                    }
+
+                    if (event.target !== canvasPuzzle) {
+                        return false;
                     }
 
                     positionX = event.pageX - event.target.getBoundingClientRect().left;
