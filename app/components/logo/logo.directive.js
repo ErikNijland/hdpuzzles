@@ -12,8 +12,7 @@
                 useLink: '='
             },
             templateUrl: 'logo/logo.html',
-            link: function (scope) {
-                console.log(scope.useLink);
+            link: function () {
             }
         };
     }

@@ -35,6 +35,7 @@
             output.height = Math.floor(image.height / imageResizeRatio);
 
             if (difficulty) {
+
                 //Making sure that each puzzle piece has the same dimensions
                 numberOfColumns = difficultySettings[difficulty].NUMBER_OF_COLUMNS;
                 numberOfRows = difficultySettings[difficulty].NUMBER_OF_ROWS;

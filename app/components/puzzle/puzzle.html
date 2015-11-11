@@ -15,7 +15,10 @@
     <hdpuzzles-canvas ng-if="state !== 'LOADING'" image="{{image}}" difficulty="{{difficulty}}" state="{{state}}" show-preview="showPreview"></hdpuzzles-canvas>
 
     <div ng-if="state === 'NEW'" class="puzzle__overlay" overlay>
-        <button ng-repeat="(difficulty, value) in difficulties" class="button" ng-click="newGame('difficulty')">{{difficulty | uppercaseFirstLetter}}</button>
+        <button class="button" ng-click="newGame('SMALL')">Small</button>
+        <button class="button" ng-click="newGame('MEDIUM')">Medium</button>
+        <button class="button" ng-click="newGame('LARGE')">Large</button>
+        <button class="button" ng-click="newGame('HUGE')">Huge</button>
     </div>
 
 
