@@ -4,6 +4,10 @@
     angular
         .module('hdpuzzles')
         .constant('difficultySettings', {
+            "DEBUG": {
+                "NUMBER_OF_COLUMNS": 4,
+                "NUMBER_OF_ROWS": 3
+            },
             "EASY": {
                 "NUMBER_OF_COLUMNS": 6,
                 "NUMBER_OF_ROWS": 4

@@ -142,7 +142,9 @@
             var sortedPieces;
 
             sortedPieces = angular.copy(pieces);
-            sortedPieces.sort();
+            sortedPieces.sort(function (a, b) {
+                return a - b;
+            });
 
             return angular.equals(pieces, sortedPieces);
         }
