@@ -5,8 +5,8 @@
         .module('hdpuzzles')
         .constant('difficultySettings', {
             "SMALL": {
-                "NUMBER_OF_COLUMNS": 4,
-                "NUMBER_OF_ROWS": 3
+                "NUMBER_OF_COLUMNS": 2,
+                "NUMBER_OF_ROWS": 1
             },
             "MEDIUM": {
                 "NUMBER_OF_COLUMNS": 8,

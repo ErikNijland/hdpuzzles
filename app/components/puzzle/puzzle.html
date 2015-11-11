@@ -24,11 +24,10 @@
 
     <div ng-if="state === 'PUZZLE_COMPLETE'" class="puzzle__overlay" overlay>
         <div class="statistics">
-            Number of moves {{statistics.numberOfMoves}}<br>
-            Time played {{statistics.numberOfSeconds | minutesFormatter}}
+            Well done! You've solved this puzzle in <strong>{{statistics.numberOfSeconds | minutesFormatter}}</strong> minutes, using <strong>{{statistics.numberOfMoves}}</strong> moves.
+
+            <a class="button" href="#/">Play another puzzle</a>
         </div>
-
-
     </div>
 </div>
 
