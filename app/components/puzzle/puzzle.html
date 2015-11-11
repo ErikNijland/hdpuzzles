@@ -23,8 +23,12 @@
 
 
     <div ng-if="state === 'PUZZLE_COMPLETE'" class="puzzle__overlay" overlay>
-        Number of moves {{statistics.numberOfMoves}}<br>
-        Time played {{statistics.numberOfSeconds | minutesFormatter}}
+        <div class="statistics">
+            Number of moves {{statistics.numberOfMoves}}<br>
+            Time played {{statistics.numberOfSeconds | minutesFormatter}}
+        </div>
+
+
     </div>
 </div>
 

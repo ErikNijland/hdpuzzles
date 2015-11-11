@@ -16,6 +16,9 @@
             .when('/puzzles/:id', {
                 templateUrl: 'puzzle/index.html'
             })
+            .when('/comments', {
+                templateUrl: 'comments/index.html'
+            })
             .otherwise({
                 redirectTo: '/'
             });
