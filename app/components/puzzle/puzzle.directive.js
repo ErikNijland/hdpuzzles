@@ -12,9 +12,9 @@
         };
     }
 
-    PuzzleController.$inject = ['$routeParams', '$scope', '$timeout', '$window', '$document', 'api', 'game', 's3', 'statistics'];
+    PuzzleController.$inject = ['$routeParams', '$scope', '$timeout', '$window', '$document', 'api', 'game', 'difficultySettings', 's3', 'statistics'];
 
-    function PuzzleController ($routeParams, $scope, $timeout, $window, $document, api, game, s3, statistics) {
+    function PuzzleController ($routeParams, $scope, $timeout, $window, $document, api, game, difficultySettings, s3, statistics) {
         var puzzleId = $routeParams.id;
 
         $scope.state = 'LOADING';
@@ -23,6 +23,7 @@
 
         function initialize (puzzle) {
             $scope.state = 'NEW';
+            $scope.difficulties = difficultySettings;
 
             $scope.image = s3.IMAGE_LOCATION + puzzle.filename;
             $scope.thumbnail = s3.THUMBNAIL_LOCATION + puzzle.filename;

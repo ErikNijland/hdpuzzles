@@ -1,10 +1,13 @@
 <div class="puzzle" ng-keydown="togglePreview();">
     <div class="puzzle__header">
-        <!--div class="logo"><a ng-href="#/">HDpuzzles<span class="logo__dot-com">.com</span></a></div-->
+        <div class="puzzle__header__logo">
+            <logo use-link="true"></logo>
+        </div>
+        <div class="puzzle__header__audio">
+            <audio-settings></audio-settings>
+        </div>
 
-        <audio-settings></audio-settings>
-
-        <div ng-show="state === 'PLAYING'" class="preview">
+        <div ng-show="state === 'PLAYING'" class="puzzle__header__audio">
             <img width="120" height="60" ng-src="{{thumbnail}}" alt="Preview" ng-click="togglePreview();">
         </div>
     </div>
@@ -12,10 +15,7 @@
     <hdpuzzles-canvas ng-if="state !== 'LOADING'" image="{{image}}" difficulty="{{difficulty}}" state="{{state}}" show-preview="showPreview"></hdpuzzles-canvas>
 
     <div ng-if="state === 'NEW'" class="puzzle__overlay" overlay>
-        <button class="button" ng-click="newGame('DEBUG')">Debug</button>
-        <button class="button" ng-click="newGame('EASY')">Easy</button>
-        <button class="button" ng-click="newGame('MEDIUM')">Medium</button>
-        <button class="button" ng-click="newGame('HARD')">Hard</button>
+        <button ng-repeat="(difficulty, value) in difficulties" class="button" ng-click="newGame('difficulty')">{{difficulty | uppercaseFirstLetter}}</button>
     </div>
 
 

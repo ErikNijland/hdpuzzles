@@ -4,21 +4,21 @@
     angular
         .module('hdpuzzles')
         .constant('difficultySettings', {
-            "DEBUG": {
+            "SMALL": {
                 "NUMBER_OF_COLUMNS": 4,
                 "NUMBER_OF_ROWS": 3
             },
-            "EASY": {
-                "NUMBER_OF_COLUMNS": 6,
-                "NUMBER_OF_ROWS": 4
-            },
             "MEDIUM": {
-                "NUMBER_OF_COLUMNS": 9,
+                "NUMBER_OF_COLUMNS": 8,
                 "NUMBER_OF_ROWS": 6
             },
-            "HARD": {
+            "LARGE": {
                 "NUMBER_OF_COLUMNS": 12,
                 "NUMBER_OF_ROWS": 8
+            },
+            "HUGE": {
+                "NUMBER_OF_COLUMNS": 16,
+                "NUMBER_OF_ROWS": 10
             }
         });
 })();
