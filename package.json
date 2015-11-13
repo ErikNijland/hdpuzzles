@@ -24,6 +24,7 @@
     "grunt-sass": "^1.0.0"
   },
   "dependencies": {
+    "compression": "^1.6.0",
     "express": "^4.13.3"
   }
 }
