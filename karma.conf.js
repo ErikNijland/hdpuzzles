@@ -36,6 +36,8 @@ module.exports = function(config) {
                 type: 'text-summary',
                 subdir: '.',
                 file: 'summary.txt'
+            }, {
+                type: 'text-summary'
             }]
         }
     });
