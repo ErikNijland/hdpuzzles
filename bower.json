@@ -1,9 +1,8 @@
 {
   "name": "hdpuzzles",
-  "homepage": "https://github.com/ErikNijland/hdpuzzles",
   "private": true,
   "dependencies": {
-    "angular": "angularjs#~1.4.8",
+    "angular": "~1.4.8",
     "angular-animate": "~1.4.8",
     "angular-route": "~1.4.8",
     "angular-mocks": "~1.4.8"

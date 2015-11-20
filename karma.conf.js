@@ -12,17 +12,41 @@ module.exports = function(config) {
         ],
         exclude: [],
         preprocessors: {
+            'app/**/*.js': ['coverage']
         },
-        // possible values: 'dots', 'progress'
-        // available reporters: https://npmjs.org/browse/keyword/karma-reporter
-        reporters: ['progress'],
+        reporters: ['progress', 'coverage'],
         port: 9876,
         colors: true,
-        // possible values: config.LOG_DISABLE || config.LOG_ERROR || config.LOG_WARN || config.LOG_INFO || config.LOG_DEBUG
         logLevel: config.LOG_INFO,
         autoWatch: true,
         browsers: ['PhantomJS'],
         singleRun: true,
-        concurrency: Infinity
+        concurrency: Infinity,
+        coverageReporter: {
+            dir : 'coverage/',
+            check: {
+                global: {
+                    statements: 25,
+                    branches: 0,
+                    functions: 0,
+                    lines: 0,
+                    excludes: []
+                }
+            },
+            reporters: [{
+                type: 'html',
+                subdir: 'html'
+            }, {
+                type: 'text',
+                subdir: '.',
+                file: 'full-report.txt'
+            }, {
+                type: 'text-summary',
+                subdir: '.',
+                file: 'summary.txt'
+            }, {
+                type: 'text-summary'
+            }]
+        }
     });
 };

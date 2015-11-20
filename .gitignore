@@ -1,6 +1,8 @@
 .idea
 node_modules
+coverage
 temp
 public/*.css
 public/*.js
 public/*.map
+public/lib
