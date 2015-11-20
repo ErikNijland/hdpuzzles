@@ -17,7 +17,6 @@ module.exports = function(config) {
         reporters: ['progress', 'coverage'],
         port: 9876,
         colors: true,
-        // possible values: config.LOG_DISABLE || config.LOG_ERROR || config.LOG_WARN || config.LOG_INFO || config.LOG_DEBUG
         logLevel: config.LOG_INFO,
         autoWatch: true,
         browsers: ['PhantomJS'],
@@ -25,6 +24,15 @@ module.exports = function(config) {
         concurrency: Infinity,
         coverageReporter: {
             dir : 'coverage/',
+            check: {
+                global: {
+                    statements: 30,
+                    branches: 0,
+                    functions: -750,
+                    lines: 0,
+                    excludes: []
+                }
+            },
             reporters: [{
                 type: 'html',
                 subdir: 'html'
