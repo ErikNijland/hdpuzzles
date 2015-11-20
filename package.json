@@ -9,8 +9,9 @@
     "url": "https://github.com/ErikNijland/hdpuzzles/issues"
   },
   "scripts": {
-    "postinstall": "grunt build",
-    "start": "node server.js"
+    "postinstall": "bower install && grunt build",
+    "start": "node server.js",
+    "test": "grunt karma:unit"
   },
   "devDependencies": {
     "grunt": "^0.4.5",
