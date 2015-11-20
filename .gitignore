@@ -4,3 +4,4 @@ temp
 public/*.css
 public/*.js
 public/*.map
+public/lib
