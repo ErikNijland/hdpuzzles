@@ -58,13 +58,18 @@ module.exports = function(grunt) {
                 }
             }
         },
+        karma: {
+            unit: {
+                configFile: 'karma.conf.js'
+            }
+        },
         watch: {
             sass: {
                 files: ['sass/**/*.scss'],
                 tasks: ['build-css']
             },
             js: {
-                files: ['./app/**/*.js', './app/**/*.html'],
+                files: ['./app/**/*.js', './app/**/*.html', 'test/**/*.js'],
                 tasks: ['build-javascript']
             }
         },
@@ -82,10 +87,11 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks('grunt-contrib-clean');
     grunt.loadNpmTasks('grunt-contrib-uglify');
+    grunt.loadNpmTasks('grunt-karma');
 
     grunt.registerTask('default', ['build', 'watch']);
 
     grunt.registerTask('build', ['build-css', 'build-javascript']);
     grunt.registerTask('build-css', ['clean:css', 'sass']);
-    grunt.registerTask('build-javascript', ['jshint', 'clean:js', 'ngtemplates', 'concat', 'uglify', 'clean:temp'])
+    grunt.registerTask('build-javascript', ['jshint', 'clean:js', 'ngtemplates', 'concat', 'uglify', 'clean:temp', 'karma:unit'])
 };
