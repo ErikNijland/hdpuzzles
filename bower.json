@@ -1,6 +1,5 @@
 {
   "name": "hdpuzzles",
-  "homepage": "https://github.com/ErikNijland/hdpuzzles",
   "private": true,
   "dependencies": {
     "angular": "angularjs#~1.4.8",
