@@ -28,7 +28,7 @@ module.exports = function(config) {
                 global: {
                     statements: 25,
                     branches: 0,
-                    functions: 100,
+                    functions: 0,
                     lines: 0,
                     excludes: []
                 }
