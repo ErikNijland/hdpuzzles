@@ -26,9 +26,9 @@ module.exports = function(config) {
             dir : 'coverage/',
             check: {
                 global: {
-                    statements: 30,
+                    statements: 25,
                     branches: 0,
-                    functions: -750,
+                    functions: 0,
                     lines: 0,
                     excludes: []
                 }
