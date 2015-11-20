@@ -1,5 +1,6 @@
 .idea
 node_modules
+coverage
 temp
 public/*.css
 public/*.js
