@@ -11,8 +11,7 @@
   },
   "scripts": {
     "postinstall": "bower install && grunt build",
-    "start": "node server.js",
-    "test": "grunt karma:unit"
+    "start": "node server.js"
   },
   "devDependencies": {
     "bower": "^1.6.5",
