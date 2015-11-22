@@ -76,7 +76,8 @@ module.exports = function(grunt) {
         clean: {
             temp: ['temp'],
             css: ['public/*.css', 'public/*.css.map'],
-            js: ['public/*.js', 'public/*.js.map']
+            js: ['public/*.js', 'public/*.js.map'],
+            coverage: ['coverage']
         }
     });
 
@@ -93,5 +94,6 @@ module.exports = function(grunt) {
 
     grunt.registerTask('build', ['build-css', 'build-javascript']);
     grunt.registerTask('build-css', ['clean:css', 'sass']);
-    grunt.registerTask('build-javascript', ['jshint', 'clean:js', 'ngtemplates', 'concat', 'uglify', 'clean:temp', 'karma:unit'])
+    grunt.registerTask('build-javascript', ['jshint', 'clean:js', 'ngtemplates', 'concat', 'uglify', 'clean:temp'])
+    grunt.registerTask('test', ['clean:coverage', 'karma:unit']);
 };
