@@ -10,7 +10,7 @@
     "url": "https://github.com/ErikNijland/hdpuzzles/issues"
   },
   "scripts": {
-    "postinstall": "bower install && grunt build",
+    "postinstall": "node_modules/protractor/bin/webdriver-manager update --standalone && bower install && grunt build",
     "start": "node server.js",
     "test": "grunt test"
   },
@@ -31,7 +31,8 @@
     "karma-coverage": "^0.5.3",
     "karma-jasmine": "^0.3.6",
     "karma-phantomjs-launcher": "^0.2.1",
-    "phantomjs": "^1.9.18"
+    "phantomjs": "^1.9.18",
+    "protractor": "^3.0.0"
   },
   "dependencies": {
     "compression": "^1.6.0",

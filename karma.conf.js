@@ -8,7 +8,7 @@ module.exports = function(config) {
             'public/lib/angular-animate/angular-animate.min.js',
             'public/lib/angular-mocks/angular-mocks.js',
             'app/**/*.js',
-            'test/unit/**/*Spec.js'
+            'test/unit/**/*.spec.js'
         ],
         exclude: [],
         preprocessors: {
