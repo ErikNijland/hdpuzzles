@@ -63,6 +63,17 @@ module.exports = function(grunt) {
                 configFile: 'karma.conf.js'
             }
         },
+        connect: {
+            server: {
+                base: 'public'
+            }
+        },
+        protractor: {
+            options: {
+                configFile: 'protractor.conf.js'
+            },
+            all: {}
+        },
         watch: {
             sass: {
                 files: ['sass/**/*.scss'],
@@ -76,22 +87,29 @@ module.exports = function(grunt) {
         clean: {
             temp: ['temp'],
             css: ['public/*.css', 'public/*.css.map'],
-            js: ['public/*.js', 'public/*.js.map']
+            js: ['public/*.js', 'public/*.js.map'],
+            coverage: ['coverage']
         }
     });
 
-    grunt.loadNpmTasks('grunt-contrib-jshint');
-    grunt.loadNpmTasks('grunt-sass');
     grunt.loadNpmTasks('grunt-angular-templates');
-    grunt.loadNpmTasks('grunt-contrib-concat');
-    grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks('grunt-contrib-clean');
+    grunt.loadNpmTasks('grunt-contrib-concat');
+    grunt.loadNpmTasks('grunt-contrib-connect');
+    grunt.loadNpmTasks('grunt-contrib-jshint');
     grunt.loadNpmTasks('grunt-contrib-uglify');
+    grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks('grunt-karma');
+    grunt.loadNpmTasks('grunt-protractor-runner');
+    grunt.loadNpmTasks('grunt-sass');
 
     grunt.registerTask('default', ['build', 'watch']);
 
     grunt.registerTask('build', ['build-css', 'build-javascript']);
     grunt.registerTask('build-css', ['clean:css', 'sass']);
-    grunt.registerTask('build-javascript', ['jshint', 'clean:js', 'ngtemplates', 'concat', 'uglify', 'clean:temp', 'karma:unit'])
+    grunt.registerTask('build-javascript', ['jshint', 'clean:js', 'ngtemplates', 'concat', 'uglify', 'clean:temp'])
+
+    grunt.registerTask('test', 'test-unit', 'test-e2e');
+    grunt.registerTask('test-unit', ['clean:coverage', 'karma:unit']);
+    grunt.registerTask('test-e2e', ['connect:server', 'protractor']);
 };
