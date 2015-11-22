@@ -1,6 +1,6 @@
 describe('The homepage', function () {
     beforeEach(function () {
-        browser.get('/#/');
+        browser.get('#/');
     });
 
     it('does stuff', function () {
