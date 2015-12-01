@@ -4,7 +4,7 @@
   "description": "Beautiful jigsaw puzzles. Tiny puzzles for those with little time to huge puzzles for those who want a challenge.",
   "version": "0.0.1",
   "icons": {
-    "128": "public/images/chrome-web-store-icon.png"
+    "128": "images/chrome-web-store-icon.png"
   },
   "app": {
     "urls": [
