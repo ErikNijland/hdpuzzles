@@ -1,0 +1,20 @@
+{
+  "manifest_version": 2,
+  "name": "HDpuzzles",
+  "description": "Beautiful jigsaw puzzles. Tiny puzzles for those with little time to huge puzzles for those who want a challenge.",
+  "version": "0.0.1",
+  "icons": {
+    "128": "public/images/chrome-web-store-icon.png"
+  },
+  "app": {
+    "urls": [
+      "http://www.hdpuzzles.com/",
+      "https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.7/",
+      "https://fonts.googleapis.com/",
+      "https://hdpuzzles.s3.eu-central-1.amazonaws.com/"
+    ],
+    "launch": {
+      "web_url": "http://www.hdpuzzles.com/"
+    }
+  }
+}
