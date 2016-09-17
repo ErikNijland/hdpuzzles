@@ -10,7 +10,7 @@
     "url": "https://github.com/ErikNijland/hdpuzzles/issues"
   },
   "scripts": {
-    "postinstall": "bower install && ./node_modules/grunt-protractor-runner/node_modules/protractor/bin/webdriver-manager update && grunt build",
+    "postinstall": "bower install && grunt build",
     "start": "node server.js",
     "test": "grunt test"
   },
