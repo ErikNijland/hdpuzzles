@@ -109,7 +109,7 @@ module.exports = function(grunt) {
     grunt.registerTask('build-css', ['clean:css', 'sass']);
     grunt.registerTask('build-javascript', ['clean:js', 'ngtemplates', 'concat', 'uglify', 'clean:temp'])
 
-    grunt.registerTask('test', ['jshint', 'test-unit', 'test-e2e']);
+    grunt.registerTask('test', ['jshint', 'test-unit']);
     grunt.registerTask('test-unit', ['clean:coverage', 'karma:unit']);
     grunt.registerTask('test-e2e', ['connect:server', 'protractor']);
 };
